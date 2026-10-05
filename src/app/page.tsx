@@ -51,6 +51,12 @@ const activities: Activity[] = [
   ["True Route / Trap Route", "Compare directions with a map and catch one planted error.", "Interpretive", "5 min", "Error hunt", "lime", ShieldCheck],
   ["Speed Swap", "Repeat a short exchange with new partners and playful twists.", "Interpersonal", "8 min", "Fluency rounds", "yellow", Zap],
   ["Local Legend", "Tell a tiny story explaining how a place got its nickname.", "Presentational", "10 min", "Storytelling", "pink", Star],
+  ["Map Memory", "Study a route for 20 seconds, then rebuild it from audio clues.", "Interpretive", "7 min", "Memory game", "blue", Eye],
+  ["Detour Duel", "Partners negotiate a new route when surprise roadblocks appear.", "Interpersonal", "9 min", "Strategy game", "coral", Dices],
+  ["City Radio", "Record a lively traffic update using location and direction phrases.", "Presentational", "8 min", "Audio challenge", "purple", Mic2],
+  ["Who Lives Where?", "Match short resident descriptions to places on the neighborhood map.", "Interpretive", "6 min", "Logic puzzle", "lime", Search],
+  ["Mystery Meetup", "Ask classmates yes-or-no questions to discover a meeting place.", "Interpersonal", "10 min", "Social mystery", "yellow", Users],
+  ["Three-Stop Tour", "Design and share a mini itinerary for a new student in town.", "Presentational", "12 min", "Tour builder", "pink", Presentation],
 ].map(([title, description, mode, time, format, color, icon]) => ({
   title, description, mode, time, format, color, icon,
 })) as Activity[];
@@ -200,9 +206,9 @@ export default function Home() {
                 <h3 className="mt-5 text-xl font-black leading-tight">Balanced practice,<br />without the busywork.</h3>
                 <p className="mt-2 text-xs leading-5 text-[#b8c2d2]">Your pack touches all ACTFL communication modes at a Novice High performance range.</p>
                 <div className="mt-6 space-y-4">
-                  <ModeProgress label="Interpersonal" value="7 activities" width="84%" color="bg-[#ff806c]" />
-                  <ModeProgress label="Interpretive" value="6 activities" width="68%" color="bg-[#71b5f8]" />
-                  <ModeProgress label="Presentational" value="5 activities" width="56%" color="bg-[#a993eb]" />
+                  <ModeProgress label="Interpersonal" value="8 activities" width="74%" color="bg-[#ff806c]" />
+                  <ModeProgress label="Interpretive" value="8 activities" width="74%" color="bg-[#71b5f8]" />
+                  <ModeProgress label="Presentational" value="8 activities" width="74%" color="bg-[#a993eb]" />
                 </div>
                 <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.07] p-4">
                   <div className="flex items-start gap-3">
@@ -217,7 +223,7 @@ export default function Home() {
           <section className="mt-8" aria-live="polite">
             <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <div className="flex items-center gap-2"><h3 className="text-xl font-black tracking-[-0.02em]">Your activity pack</h3><Badge className="rounded-full bg-[#e3f1c7] px-2.5 text-[#4c702a] hover:bg-[#e3f1c7]">{isGenerating ? "Building…" : "18 ready"}</Badge></div>
+                <div className="flex items-center gap-2"><h3 className="text-xl font-black tracking-[-0.02em]">Your activity pack</h3><Badge className="rounded-full bg-[#e3f1c7] px-2.5 text-[#4c702a] hover:bg-[#e3f1c7]">{isGenerating ? "Building…" : "24 ready"}</Badge></div>
                 <p className="mt-1 text-xs text-[#7e8593]">Mix, edit, and save only what fits your class.</p>
               </div>
               <div className="flex items-center gap-1 overflow-x-auto rounded-2xl border border-[#e3ded4] bg-[#fffefa] p-1.5">

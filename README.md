@@ -5,7 +5,7 @@ lesson, review a balanced pack of ACTFL-aligned practice, and launch playful
 student activities designed to make speaking feel private, cooperative, and
 low-pressure.
 
-The current product slice includes an editable lesson brief, 18 supplemental
+The current product slice includes an editable lesson brief, 24 supplemental
 activities across the three communication modes, activity filters, generation
 feedback, and an interactive “Secret Signal” student game preview.
 
