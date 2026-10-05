@@ -101,7 +101,7 @@ export function SentenceScramble({ lesson }: { lesson: Lesson }) {
           <p className="text-muted-foreground">
             {solvedCount} of {sentences.length} sentences rebuilt without losing all your hearts.
           </p>
-          <p className="text-2xl font-bold text-primary">+{xp} XP</p>
+          <p className="text-2xl font-bold text-reward">+{xp} XP</p>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button onClick={restart} className="h-10">
               <RotateCcw /> Shuffle again
@@ -123,7 +123,7 @@ export function SentenceScramble({ lesson }: { lesson: Lesson }) {
         </span>
         <span className="flex items-center gap-1">
           {Array.from({ length: HEARTS }).map((_, i) => (
-            <Heart key={i} className={cn("size-5 transition-colors", i < hearts ? "fill-foreground/70 text-foreground/70" : "text-muted-foreground/30")} />
+            <Heart key={i} className={cn("size-5 transition-colors", i < hearts ? "fill-primary text-primary" : "text-muted-foreground/30")} />
           ))}
         </span>
         <span className="font-bold tabular-nums">{score.toLocaleString()}</span>
@@ -253,12 +253,12 @@ function SentenceRound({ sentence, language, isLast, onHearts, onScored, onNext 
           dir={language.rtl ? "rtl" : "ltr"}
           className={cn(
             "flex min-h-20 flex-wrap items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-4 transition-colors",
-            step === "build" ? "border-border bg-muted/40" : "border-foreground/20 bg-secondary",
+            step === "build" ? "border-border bg-muted/40" : "signal-ok",
           )}
         >
           {placed.length === 0 && <span className="text-sm text-muted-foreground">Your sentence appears here</span>}
           {placed.map((c) => (
-            <span key={c.id} className="animate-pop-in rounded-xl bg-primary px-3 py-2 text-lg font-semibold text-primary-foreground shadow-sm">
+            <span key={c.id} className="animate-pop-in rounded-xl bg-accent px-3 py-2 text-lg font-semibold text-accent-foreground">
               {c.text}
             </span>
           ))}
@@ -273,7 +273,7 @@ function SentenceRound({ sentence, language, isLast, onHearts, onScored, onNext 
                 onClick={() => tap(c)}
                 className={cn(
                   "rounded-xl border-2 border-border bg-card px-3 py-2 text-lg font-semibold shadow-sm transition-all hover:border-primary hover:bg-accent active:scale-95",
-                  wrongId === c.id && "animate-shake border-foreground/30 bg-muted",
+                  wrongId === c.id && "signal-miss animate-shake",
                 )}
               >
                 {c.text}

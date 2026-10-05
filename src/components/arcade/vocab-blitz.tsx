@@ -169,7 +169,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
             <Stat label="Accuracy" value={`${accuracy}%`} />
             <Stat label="Best combo" value={`${bestCombo}×`} />
           </div>
-          <p className="text-2xl font-bold text-primary">+{xp} XP</p>
+          <p className="text-2xl font-bold text-reward">+{xp} XP</p>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button onClick={start} className="h-10">
               <RotateCcw /> Play again
@@ -184,7 +184,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
   return (
     <div className="flex flex-1 flex-col gap-4">
       <div className="grid grid-cols-3 items-center">
-        <span className={cn("flex items-center gap-1.5 text-lg font-bold tabular-nums", timeLeft <= 10 && "text-foreground")}>
+        <span className={cn("flex items-center gap-1.5 text-lg font-bold tabular-nums", timeLeft <= 10 && "text-primary")}>
           <Timer className="size-5" /> {timeLeft}s
         </span>
         <span className={cn("justify-self-center rounded-full px-3 py-1 text-sm font-bold", combo >= 3 ? "bg-secondary text-foreground" : "bg-muted text-muted-foreground")}>
@@ -193,7 +193,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
         <span className="justify-self-end text-lg font-bold tabular-nums">{score.toLocaleString()}</span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-        <div className="h-full rounded-full bg-foreground/70 transition-all duration-1000 ease-linear" style={{ width: `${(timeLeft / ROUND_SECONDS) * 100}%` }} />
+        <div className="h-full rounded-full bg-primary transition-all duration-1000 ease-linear" style={{ width: `${(timeLeft / ROUND_SECONDS) * 100}%` }} />
       </div>
 
       {question && (
@@ -226,8 +226,8 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
                     className={cn(
                       "min-h-16 rounded-2xl border-2 px-4 py-3 text-lg font-semibold shadow-sm transition-all active:scale-[0.98]",
                       !flash && "border-border bg-card hover:border-primary hover:bg-accent",
-                      flash && isAnswer && "border-foreground/30 bg-secondary text-foreground",
-                      flash && isChoice && !flash.ok && "border-foreground/20 bg-muted text-muted-foreground animate-shake",
+                      flash && isAnswer && "signal-ok",
+                      flash && isChoice && !flash.ok && "signal-miss animate-shake",
                       flash && !isChoice && !isAnswer && "border-border opacity-40",
                     )}
                   >

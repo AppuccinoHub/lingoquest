@@ -19,7 +19,7 @@ export function ProgressPanel({ progress, compact = false }: { progress: Student
         </div>
         <div className="text-right">
           <p className="flex items-center justify-end gap-1 text-xl font-bold">
-            <Star className="size-5 text-muted-foreground" /> {progress.xp.toLocaleString()}
+            <Star className="size-5 fill-reward text-reward" /> {progress.xp.toLocaleString()}
           </p>
           <p className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
             <Flame className="size-3.5" /> {progress.streakDays} day streak
@@ -28,7 +28,7 @@ export function ProgressPanel({ progress, compact = false }: { progress: Student
       </div>
       <div>
         <div className="h-3 overflow-hidden rounded-full bg-muted">
-          <div className="h-full rounded-full bg-foreground/70 transition-all duration-700" style={{ width: `${Math.max(3, rank.progress * 100)}%` }} />
+          <div className="h-full rounded-full bg-primary transition-all duration-700" style={{ width: `${Math.max(3, rank.progress * 100)}%` }} />
         </div>
         <p className="mt-1 text-xs text-muted-foreground">
           {rank.next ? `${(rank.next - progress.xp).toLocaleString()} XP to the next rank` : "Top rank reached"}
@@ -48,7 +48,7 @@ export function ProgressPanel({ progress, compact = false }: { progress: Student
                   title={`${b.name}: ${b.description}`}
                   className={cn(
                     "flex aspect-square flex-col items-center justify-center gap-1 rounded-xl border text-center",
-                    earned ? "border-border bg-secondary" : "border-border bg-muted/50 text-muted-foreground",
+                    earned ? "border-primary/20 bg-accent" : "border-border bg-muted/50 text-muted-foreground",
                   )}
                 >
                   <span className={cn("text-2xl", !earned && "grayscale opacity-40")}>{earned ? b.icon : <Lock className="size-5" />}</span>

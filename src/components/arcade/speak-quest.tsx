@@ -250,7 +250,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
           </p>
           <div className="flex items-center justify-center gap-6">
             <div>
-              <p className="text-3xl font-bold text-primary">+{sessionXp}</p>
+              <p className="text-3xl font-bold text-reward">+{sessionXp}</p>
               <p className="text-xs text-muted-foreground">XP earned</p>
             </div>
             <div>
@@ -313,7 +313,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
               {score !== null && (
                 <div className="mx-auto max-w-xs">
                   <div className="h-2 overflow-hidden rounded-full bg-background">
-                    <div className="h-full rounded-full bg-foreground/70 transition-all" style={{ width: `${Math.round(score * 100)}%` }} />
+                    <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${Math.round(score * 100)}%` }} />
                   </div>
                   <p className="mt-1 text-xs text-muted-foreground">{Math.round(score * 100)}% match</p>
                 </div>
@@ -363,7 +363,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
                 onClick={phase === "listening" ? stopListening : startListening}
                 className={cn(
                   "grid size-28 place-items-center rounded-full text-primary-foreground transition-colors",
-                  phase === "listening" ? "bg-foreground" : "bg-primary",
+                  phase === "listening" ? "bg-primary ring-4 ring-primary/25" : "bg-primary",
                 )}
                 aria-label={phase === "listening" ? "Stop listening" : "Start speaking"}
               >

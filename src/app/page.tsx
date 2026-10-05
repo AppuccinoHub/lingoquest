@@ -12,11 +12,11 @@ export default function Home() {
     <div className="mx-auto w-full max-w-6xl px-4 pb-20">
       <section className="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
         <div className="space-y-6">
-          <Badge variant="secondary" className="gap-1.5 rounded-full px-3 py-1">
+          <Badge className="gap-1.5 rounded-full bg-accent px-3 py-1 text-accent-foreground hover:bg-accent">
             <Sparkles className="size-3.5" /> Built on the ACTFL Proficiency Guidelines & Can-Do Statements
           </Badge>
           <h1 className="text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-            One lesson in. Dozens of activities out. Speaking practice kids actually want.
+            One lesson in. <span className="text-primary">Dozens of activities</span> out. Speaking practice kids actually want.
           </h1>
           <p className="max-w-prose text-lg text-muted-foreground">
             Paste your vocabulary and model sentences, pick an ACTFL level, and LingoQuest generates {TOTAL_TEMPLATES}{" "}
@@ -40,7 +40,7 @@ export default function Home() {
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Speak Quest · Stage 2</p>
                   <p className="text-lg font-semibold">Say it in Italian</p>
                 </div>
-                <Badge variant="secondary" className="rounded-full">
+                <Badge className="rounded-full bg-secondary text-reward hover:bg-secondary">
                   +25 XP
                 </Badge>
               </div>
@@ -50,13 +50,13 @@ export default function Home() {
                 <p className="mt-1 text-sm text-muted-foreground">“I like pizza with tomato.”</p>
               </div>
               <div className="flex items-center gap-4">
-                <div className="grid size-16 place-items-center rounded-full bg-secondary text-foreground">
+                <div className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground">
                   <Mic className="size-7" />
                 </div>
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">You said: “mi piace la pizza con il pomodoro”</p>
                   <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div className="h-full w-[96%] rounded-full bg-foreground/70" />
+                    <div className="h-full w-[96%] rounded-full bg-primary" />
                   </div>
                   <p className="text-xs text-muted-foreground">96% match · ⭐⭐⭐ · Only you can hear this</p>
                 </div>
@@ -117,7 +117,7 @@ export default function Home() {
           A Novice Mid Italian lesson on food, café ordering, and meals is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
+          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
         </div>
       </section>
     </div>
