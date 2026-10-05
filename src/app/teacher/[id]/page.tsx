@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Copy, Gamepad2, Heart, Link2, Pencil, Printer, Search } from "lucide-react";
@@ -13,7 +13,7 @@ import { MaterialCard, ModeBadge } from "@/components/material-card";
 import { RubricTable } from "@/components/rubric-table";
 import { MODES, getLanguage, getLevel, type Mode } from "@/lib/actfl";
 import { CATEGORY_META, CATEGORY_ORDER, generateMaterials, materialToText } from "@/lib/generator";
-import { encodeLessonForShare, findLesson } from "@/lib/storage";
+import { encodeLessonForShare, findLesson, takeFlash } from "@/lib/storage";
 import type { Lesson, MaterialCategory } from "@/lib/types";
 import { useStored } from "@/lib/storage";
 import { cn } from "@/lib/utils";
@@ -75,6 +75,11 @@ function LessonView({ lesson }: { lesson: Lesson }) {
   const [mode, setMode] = useState<Mode | null>(null);
   const [lowStakes, setLowStakes] = useState(false);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const msg = takeFlash();
+    if (msg) toast.success(msg);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

@@ -137,3 +137,16 @@ export function decodeSharedLesson(encoded: string): Lesson | null {
     return null;
   }
 }
+
+const FLASH_KEY = "lingoquest.flash";
+
+/** Queue a one-time message to be shown by the next page after a navigation. */
+export function setFlash(message: string) {
+  window.sessionStorage.setItem(FLASH_KEY, message);
+}
+
+export function takeFlash(): string | null {
+  const msg = window.sessionStorage.getItem(FLASH_KEY);
+  if (msg) window.sessionStorage.removeItem(FLASH_KEY);
+  return msg;
+}

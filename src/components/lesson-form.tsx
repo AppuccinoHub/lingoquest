@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ACTFL_LEVELS, LANGUAGES, getLevel, suggestCanDo, type ActflLevelId } from "@/lib/actfl";
 import { LEVEL_COUNTS } from "@/lib/generator";
-import { newId, saveLesson } from "@/lib/storage";
+import { newId, saveLesson, setFlash } from "@/lib/storage";
 import type { Lesson, VocabItem } from "@/lib/types";
 
 interface Props {
@@ -103,7 +103,7 @@ export function LessonForm({ initial }: Props) {
       updatedAt: now,
     };
     saveLesson(lesson);
-    toast.success(initial ? "Lesson updated" : `Generated ${LEVEL_COUNTS[level]} materials`);
+    setFlash(initial ? "Lesson updated. Materials regenerated." : `Generated ${LEVEL_COUNTS[level]} materials for ${lesson.title}.`);
     router.push(`/teacher/${lesson.id}`);
   }
 
