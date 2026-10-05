@@ -34,7 +34,7 @@ Lessons live on the teacher's device. "Copy student link" encodes the whole less
 
 ```bash
 npm install
-npm run dev -- --port 4871
+npm run dev
 ```
 
 Open <http://127.0.0.1:4871>. A demo lesson (Spanish, Novice Mid, food) is built in.
