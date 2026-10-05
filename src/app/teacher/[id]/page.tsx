@@ -243,7 +243,7 @@ function LessonView({ lesson }: { lesson: Lesson }) {
                 className={cn(
                   "flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-semibold transition-colors",
                   lowStakes
-                    ? "border-emerald-300 bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100"
+                    ? "border-primary/25 bg-accent text-accent-foreground"
                     : "border-border text-muted-foreground hover:bg-muted",
                 )}
               >

@@ -62,7 +62,6 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
   const [correct, setCorrect] = useState(0);
   const [answered, setAnswered] = useState(0);
   const [flash, setFlash] = useState<{ choice: string; ok: boolean } | null>(null);
-  const [pulse, setPulse] = useState(false);
   const lockRef = useRef(false);
 
   const multiplier = Math.min(MAX_MULTIPLIER, Math.max(1, combo));
@@ -111,10 +110,6 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
       setScore((s) => s + 100 * mult);
       setXp((x) => x + 5 * mult);
       setCorrect((c) => c + 1);
-      if (nextCombo >= 3) {
-        setPulse(true);
-        setTimeout(() => setPulse(false), 300);
-      }
     } else {
       setCombo(0);
     }
@@ -139,7 +134,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
     return (
       <Card className="flex-1">
         <CardContent className="flex h-full flex-col items-center justify-center gap-6 p-8 text-center">
-          <span className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg">
+          <span className="grid size-20 place-items-center rounded-3xl bg-secondary text-foreground">
             <Zap className="size-10" />
           </span>
           <div>
@@ -174,7 +169,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
             <Stat label="Accuracy" value={`${accuracy}%`} />
             <Stat label="Best combo" value={`${bestCombo}×`} />
           </div>
-          <p className="text-2xl font-bold text-primary">+{xp} XP</p>
+          <p className="text-2xl font-bold text-reward">+{xp} XP</p>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button onClick={start} className="h-10">
               <RotateCcw /> Play again
@@ -189,16 +184,16 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
   return (
     <div className="flex flex-1 flex-col gap-4">
       <div className="grid grid-cols-3 items-center">
-        <span className={cn("flex items-center gap-1.5 text-lg font-bold tabular-nums", timeLeft <= 10 && "text-rose-600")}>
+        <span className={cn("flex items-center gap-1.5 text-lg font-bold tabular-nums", timeLeft <= 10 && "text-primary")}>
           <Timer className="size-5" /> {timeLeft}s
         </span>
-        <span className={cn("justify-self-center rounded-full px-3 py-1 text-sm font-bold transition-transform", combo >= 3 ? "bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-200" : "bg-muted text-muted-foreground", pulse && "scale-125")}>
+        <span className={cn("justify-self-center rounded-full px-3 py-1 text-sm font-bold", combo >= 3 ? "bg-secondary text-foreground" : "bg-muted text-muted-foreground")}>
           <Flame className="mr-1 inline size-4" /> {combo}× combo
         </span>
         <span className="justify-self-end text-lg font-bold tabular-nums">{score.toLocaleString()}</span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-        <div className={cn("h-full rounded-full transition-all duration-1000 ease-linear", timeLeft <= 10 ? "bg-rose-500" : "bg-amber-400")} style={{ width: `${(timeLeft / ROUND_SECONDS) * 100}%` }} />
+        <div className="h-full rounded-full bg-primary transition-all duration-1000 ease-linear" style={{ width: `${(timeLeft / ROUND_SECONDS) * 100}%` }} />
       </div>
 
       {question && (
@@ -231,8 +226,8 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
                     className={cn(
                       "min-h-16 rounded-2xl border-2 px-4 py-3 text-lg font-semibold shadow-sm transition-all active:scale-[0.98]",
                       !flash && "border-border bg-card hover:border-primary hover:bg-accent",
-                      flash && isAnswer && "border-emerald-500 bg-emerald-50 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100",
-                      flash && isChoice && !flash.ok && "border-rose-500 bg-rose-50 text-rose-900 animate-shake dark:bg-rose-950 dark:text-rose-100",
+                      flash && isAnswer && "signal-ok",
+                      flash && isChoice && !flash.ok && "signal-miss animate-shake",
                       flash && !isChoice && !isAnswer && "border-border opacity-40",
                     )}
                   >

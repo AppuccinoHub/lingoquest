@@ -94,14 +94,14 @@ export function SentenceScramble({ lesson }: { lesson: Lesson }) {
     return (
       <Card className="flex-1 animate-pop-in">
         <CardContent className="flex h-full flex-col items-center justify-center gap-6 p-8 text-center">
-          <span className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-sky-400 to-emerald-500 text-white shadow-lg">
+          <span className="grid size-20 place-items-center rounded-3xl bg-secondary text-foreground">
             <Shuffle className="size-10" />
           </span>
           <h2 className="text-4xl font-bold tabular-nums">{score.toLocaleString()} pts</h2>
           <p className="text-muted-foreground">
             {solvedCount} of {sentences.length} sentences rebuilt without losing all your hearts.
           </p>
-          <p className="text-2xl font-bold text-primary">+{xp} XP</p>
+          <p className="text-2xl font-bold text-reward">+{xp} XP</p>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button onClick={restart} className="h-10">
               <RotateCcw /> Shuffle again
@@ -123,7 +123,7 @@ export function SentenceScramble({ lesson }: { lesson: Lesson }) {
         </span>
         <span className="flex items-center gap-1">
           {Array.from({ length: HEARTS }).map((_, i) => (
-            <Heart key={i} className={cn("size-5 transition-colors", i < hearts ? "fill-rose-500 text-rose-500" : "text-muted-foreground/30")} />
+            <Heart key={i} className={cn("size-5 transition-colors", i < hearts ? "fill-primary text-primary" : "text-muted-foreground/30")} />
           ))}
         </span>
         <span className="font-bold tabular-nums">{score.toLocaleString()}</span>
@@ -253,12 +253,12 @@ function SentenceRound({ sentence, language, isLast, onHearts, onScored, onNext 
           dir={language.rtl ? "rtl" : "ltr"}
           className={cn(
             "flex min-h-20 flex-wrap items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-4 transition-colors",
-            step === "build" ? "border-border bg-muted/40" : "border-emerald-400 bg-emerald-50 dark:bg-emerald-950",
+            step === "build" ? "border-border bg-muted/40" : "signal-ok",
           )}
         >
           {placed.length === 0 && <span className="text-sm text-muted-foreground">Your sentence appears here</span>}
           {placed.map((c) => (
-            <span key={c.id} className="animate-pop-in rounded-xl bg-primary px-3 py-2 text-lg font-semibold text-primary-foreground shadow-sm">
+            <span key={c.id} className="animate-pop-in rounded-xl bg-accent px-3 py-2 text-lg font-semibold text-accent-foreground">
               {c.text}
             </span>
           ))}
@@ -273,7 +273,7 @@ function SentenceRound({ sentence, language, isLast, onHearts, onScored, onNext 
                 onClick={() => tap(c)}
                 className={cn(
                   "rounded-xl border-2 border-border bg-card px-3 py-2 text-lg font-semibold shadow-sm transition-all hover:border-primary hover:bg-accent active:scale-95",
-                  wrongId === c.id && "animate-shake border-rose-500 bg-rose-50 dark:bg-rose-950",
+                  wrongId === c.id && "signal-miss animate-shake",
                 )}
               >
                 {c.text}
@@ -289,7 +289,7 @@ function SentenceRound({ sentence, language, isLast, onHearts, onScored, onNext 
             {step === "speaking" ? (
               supported ? (
                 <div className="space-y-2">
-                  <div className="mx-auto grid size-16 place-items-center rounded-full bg-rose-500 text-white animate-pulse-ring">
+                  <div className="mx-auto grid size-16 place-items-center rounded-full bg-foreground text-background">
                     <Mic className="size-7" />
                   </div>
                   <p className="text-sm text-muted-foreground">Listening… {transcript && <span className="text-foreground">“{transcript}”</span>}</p>

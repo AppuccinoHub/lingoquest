@@ -12,7 +12,7 @@ export default function Home() {
     <div className="mx-auto w-full max-w-6xl px-4 pb-20">
       <section className="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
         <div className="space-y-6">
-          <Badge variant="secondary" className="gap-1.5 rounded-full px-3 py-1">
+          <Badge className="gap-1.5 rounded-full bg-accent px-3 py-1 text-accent-foreground hover:bg-accent">
             <Sparkles className="size-3.5" /> Built on the ACTFL Proficiency Guidelines & Can-Do Statements
           </Badge>
           <h1 className="text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
@@ -33,15 +33,14 @@ export default function Home() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 via-fuchsia-200/30 to-amber-100/40 blur-2xl dark:from-primary/20 dark:via-fuchsia-900/20 dark:to-amber-900/10" />
-          <Card className="overflow-hidden border-border/70 shadow-xl">
+          <Card className="overflow-hidden border-border/70 shadow-sm">
             <CardContent className="space-y-4 p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Speak Quest · Stage 2</p>
                   <p className="text-lg font-semibold">Say it in Italian</p>
                 </div>
-                <Badge className="rounded-full bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-200">
+                <Badge className="rounded-full bg-secondary text-reward hover:bg-secondary">
                   +25 XP
                 </Badge>
               </div>
@@ -51,13 +50,13 @@ export default function Home() {
                 <p className="mt-1 text-sm text-muted-foreground">“I like pizza with tomato.”</p>
               </div>
               <div className="flex items-center gap-4">
-                <div className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg animate-pulse-ring">
+                <div className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground">
                   <Mic className="size-7" />
                 </div>
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">You said: “mi piace la pizza con il pomodoro”</p>
                   <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div className="h-full w-[96%] rounded-full bg-emerald-500" />
+                    <div className="h-full w-[96%] rounded-full bg-primary" />
                   </div>
                   <p className="text-xs text-muted-foreground">96% match · ⭐⭐⭐ · Only you can hear this</p>
                 </div>
@@ -112,13 +111,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-16 flex flex-col items-center gap-4 rounded-3xl bg-primary px-6 py-12 text-center text-primary-foreground">
+      <section className="mt-16 flex flex-col items-center gap-4 rounded-3xl border border-border bg-card px-6 py-12 text-center">
         <h2 className="text-3xl font-bold tracking-tight">Start with the demo lesson</h2>
-        <p className="max-w-xl text-primary-foreground/80">
+        <p className="max-w-xl text-muted-foreground">
           A Novice Mid Italian lesson on food, café ordering, and meals is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
+          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
         </div>
       </section>
     </div>

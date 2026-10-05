@@ -19,7 +19,7 @@ export function Stars({ count, size = "text-2xl" }: { count: number; size?: stri
   return (
     <span className={`${size} leading-none tracking-tight`} aria-label={`${count} of 3 stars`}>
       {[0, 1, 2].map((i) => (
-        <span key={i} className={i < count ? "text-amber-400" : "text-muted-foreground/30"}>
+        <span key={i} className={i < count ? "text-reward" : "text-muted-foreground/30"}>
           ★
         </span>
       ))}

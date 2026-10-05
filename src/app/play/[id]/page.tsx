@@ -83,15 +83,15 @@ function Hub({ lesson, progress, refresh }: { lesson: Lesson; progress: StudentP
           const Icon = g.icon;
           return (
             <Link key={g.id} href={`/play/${lesson.id}/${g.id}`} className="group">
-              <Card className="h-full overflow-hidden transition-all group-hover:-translate-y-0.5 group-hover:shadow-lg">
-                <div className={cn("flex h-28 items-center justify-center bg-gradient-to-br text-white", g.color)}>
-                  <Icon className="size-12 drop-shadow" />
-                </div>
-                <CardContent className="space-y-2 p-5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold">{g.name}</h2>
+              <Card className="h-full p-5 transition-colors group-hover:border-primary/35">
+                <CardContent className="space-y-3 p-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className={cn("grid size-11 shrink-0 place-items-center rounded-xl", g.color)}>
+                      <Icon className="size-5" />
+                    </span>
                     <span className="text-xs font-medium text-muted-foreground">{g.xp}</span>
                   </div>
+                  <h2 className="text-lg font-semibold">{g.name}</h2>
                   <p className="text-sm text-muted-foreground">{g.tagline}</p>
                   <p className="pt-1 text-xs font-medium">
                     {r ? (
@@ -119,9 +119,9 @@ function Hub({ lesson, progress, refresh }: { lesson: Lesson; progress: StudentP
                 const on = checked.includes(i);
                 return (
                   <li key={i}>
-                    <label className={cn("flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors", on ? "border-emerald-300 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950" : "border-border hover:bg-muted/50")}>
+                    <label className={cn("flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors", on ? "border-primary/25 bg-accent" : "border-border hover:bg-muted/50")}>
                       <Checkbox checked={on} onCheckedChange={() => toggle(i)} className="mt-0.5" />
-                      <span className={cn("text-sm", on && "text-emerald-900 dark:text-emerald-100")}>{s}</span>
+                      <span className="text-sm">{s}</span>
                     </label>
                   </li>
                 );

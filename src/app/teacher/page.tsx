@@ -72,7 +72,7 @@ function LessonCard({ lesson, demo, onDelete }: { lesson: Lesson; demo?: boolean
             {lang.flag} {lang.name}
           </Badge>
           <Badge variant="outline">{level.label}</Badge>
-          {demo && <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-200">Demo</Badge>}
+          {demo && <Badge className="bg-accent text-accent-foreground hover:bg-accent">Demo</Badge>}
         </div>
         <CardTitle className="mt-2 line-clamp-2 text-lg leading-snug">
           <Link href={`/teacher/${lesson.id}`} className="after:absolute after:inset-0">
