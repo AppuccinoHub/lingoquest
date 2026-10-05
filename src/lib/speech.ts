@@ -98,7 +98,7 @@ export function normalize(text: string): string {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[¿¡?!.,;:"'()\-–—…]/g, " ")
+    .replace(/[\p{P}\p{S}]/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -131,12 +131,31 @@ export function similarity(said: string, target: string, noSpaces = false): numb
   return Math.max(0, 1 - dist / Math.max(ta.length, tb.length));
 }
 
+const ARTICLES = new Set([
+  "el", "la", "los", "las", "un", "una", "unos", "unas", // es
+  "le", "les", "l", "une", "des", "du", // fr
+  "der", "die", "das", "den", "dem", "ein", "eine", "einen", // de
+  "il", "lo", "gli", "i", "uno", // it
+  "o", "a", "os", "as", "um", "uma", // pt
+  "the", "an", // en
+]);
+
+/** Drop a leading article so "el pan" also matches "como pan". */
+function coreTerm(normalized: string): string {
+  const parts = normalized.split(" ");
+  return parts.length > 1 && ARTICLES.has(parts[0]) ? parts.slice(1).join(" ") : normalized;
+}
+
 /** How many target vocabulary terms appear in a free response. */
-export function vocabHits(said: string, terms: string[]): string[] {
+export function vocabHits(said: string, terms: string[], noSpaces = false): string[] {
   const s = normalize(said);
+  if (!s) return [];
   return terms.filter((t) => {
     const n = normalize(t);
-    return n && s.includes(n);
+    if (!n) return false;
+    if (noSpaces) return s.replace(/ /g, "").includes(n.replace(/ /g, ""));
+    const core = coreTerm(n);
+    return s.includes(n) || ` ${s} `.includes(` ${core} `);
   });
 }
 

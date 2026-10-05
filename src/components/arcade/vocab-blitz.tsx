@@ -202,8 +202,8 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
       </div>
 
       {question && (
-        <Card className="flex-1">
-          <CardContent className="flex h-full flex-col gap-6 p-6 sm:p-8">
+        <Card>
+          <CardContent className="flex flex-col gap-6 p-6 sm:p-8">
             <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {question.direction === "toTarget" ? `Which is the ${language.name} word for…` : "What does this mean?"}
@@ -218,7 +218,7 @@ export function VocabBlitz({ lesson }: { lesson: Lesson }) {
               </button>
               <p className="mt-1 text-xs text-muted-foreground">×{multiplier} multiplier active</p>
             </div>
-            <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {question.options.map((opt, i) => {
                 const isChoice = flash?.choice === opt;
                 const isAnswer = flash && opt === question.answer;

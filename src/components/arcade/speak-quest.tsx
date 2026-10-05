@@ -107,7 +107,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
 
   function scoreTranscript(text: string): number {
     if (prompt.kind === "open") {
-      const hits = vocabHits(text, prompt.mustUse ?? []);
+      const hits = vocabHits(text, prompt.mustUse ?? [], language.noSpaces);
       const words = language.noSpaces ? Array.from(text.replace(/\s/g, "")).length / 2 : text.trim().split(/\s+/).filter(Boolean).length;
       const required = Math.min(prompt.mustUse?.length ?? 1, 1);
       return Math.min(1, (hits.length >= required ? 0.7 : 0.25) + Math.min(words / 6, 1) * 0.3);
