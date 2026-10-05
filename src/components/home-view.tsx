@@ -128,7 +128,7 @@ export function HomeView() {
                 onValueChange={(value) => value && update({ language: value })}
                 items={Object.fromEntries(LANGUAGE_NAMES.map((name) => [name, name]))}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-label="Language">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -146,7 +146,7 @@ export function HomeView() {
                 onValueChange={(value) => value && update({ level: value as Level })}
                 items={Object.fromEntries(LEVELS.map((level) => [level, level]))}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-label="Proficiency target">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -164,6 +164,7 @@ export function HomeView() {
               value={draft.topic}
               onChange={(event) => update({ topic: event.target.value })}
               placeholder="buying food at a market"
+              aria-label="Topic"
               aria-invalid={Boolean(error)}
               className="h-10"
             />
@@ -173,6 +174,7 @@ export function HomeView() {
               value={draft.vocabulary}
               onChange={(event) => update({ vocabulary: event.target.value })}
               placeholder={"la manzana — apple\n¿cuánto cuesta? — how much does it cost"}
+              aria-label="Vocabulary"
               className="min-h-28"
             />
           </Field>

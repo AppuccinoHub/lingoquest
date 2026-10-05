@@ -58,7 +58,7 @@ export function WordSprint({
         <span>
           {index + 1} / {questions.length}
         </span>
-        <span>{combo > 1 ? `Combo ${combo}` : picked && picked !== question.answer ? "Combo resting" : "Combo ready"}</span>
+        <span>{combo > 0 ? `Combo ${combo}` : picked && picked !== question.answer ? "Combo resting" : "Combo ready"}</span>
         <Button type="button" variant={chill ? "secondary" : "outline"} size="sm" onClick={() => setChill((value) => !value)}>
           {chill ? "Chill mode on" : "Timer vibe on"}
         </Button>

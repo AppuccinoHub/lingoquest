@@ -11,7 +11,7 @@ import { WhisperGame } from "@/components/games/whisper-game"
 import { WordSprint } from "@/components/games/word-sprint"
 import { Pip } from "@/components/pip"
 import { Button } from "@/components/ui/button"
-import { rankFor } from "@/lib/actfl"
+import { rankFor, SPOTLIGHT_COPY } from "@/lib/actfl"
 import { packFor } from "@/lib/languages"
 import { buildDeck } from "@/lib/generate"
 import { award, getLesson, readProgress, type Progress } from "@/lib/storage"
@@ -56,7 +56,7 @@ export function PlayView({ lessonId, materialId }: { lessonId: string; materialI
 
   if (missing || !material) {
     return (
-      <Shell lessonId={lessonId} title="Missing game">
+      <Shell lessonId={lessonId} title="Missing game" kicker="Arcade">
         <p>That game is not on this lesson.</p>
         <Button render={<Link href={`/arcade/${lessonId}`} />} className="mt-4 h-11">
           Back to the arcade
@@ -68,7 +68,13 @@ export function PlayView({ lessonId, materialId }: { lessonId: string; materialI
   const rank = rankFor(progress?.xp ?? 0)
 
   return (
-    <Shell lessonId={lessonId} title={material.title} xp={progress?.xp ?? 0} rank={rank.current.name}>
+    <Shell
+      lessonId={lessonId}
+      title={material.title}
+      kicker={SPOTLIGHT_COPY[material.spotlight].label}
+      xp={progress?.xp ?? 0}
+      rank={rank.current.name}
+    >
       <p className="text-sm text-muted-foreground">{material.whySafe}</p>
       {material.play?.type === "sprint" && <WordSprint questions={material.play.questions} onComplete={onComplete} />}
       {material.play?.type === "mission" && (
@@ -189,12 +195,14 @@ function MaskRouter({
 function Shell({
   lessonId,
   title,
+  kicker = "Arcade",
   xp,
   rank,
   children,
 }: {
   lessonId: string
   title: string
+  kicker?: string
   xp?: number
   rank?: string
   children?: React.ReactNode
@@ -209,7 +217,7 @@ function Shell({
         </div>
       </header>
       <div>
-        <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Private play</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{kicker}</p>
         <h1 className="font-display text-4xl tracking-tight">{title}</h1>
       </div>
       {children}

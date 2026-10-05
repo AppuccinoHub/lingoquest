@@ -131,11 +131,11 @@ export function StudioView({ lessonId }: { lessonId: string }) {
             </div>
             {isSample && <p className="text-xs text-muted-foreground">This is a sample. Save a copy before you rely on edits.</p>}
             <Field label="Title">
-              <Input value={lesson.title} onChange={(event) => update({ title: event.target.value })} className="h-10" />
+              <Input value={lesson.title} aria-label="Title" onChange={(event) => update({ title: event.target.value })} className="h-10" />
             </Field>
             <Field label="Language">
               <Select value={lesson.language} onValueChange={(value) => value && update({ language: value })} items={nameItems(LANGUAGE_NAMES)}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-label="Language">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -149,7 +149,7 @@ export function StudioView({ lessonId }: { lessonId: string }) {
             </Field>
             <Field label="Proficiency target">
               <Select value={lesson.level} onValueChange={(value) => value && update({ level: value as Level })} items={nameItems(LEVELS)}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-label="Proficiency target">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -162,22 +162,22 @@ export function StudioView({ lessonId }: { lessonId: string }) {
               </Select>
             </Field>
             <Field label="Topic">
-              <Input value={lesson.topic} onChange={(event) => update({ topic: event.target.value })} className="h-10" placeholder="What is the lesson about?" />
+              <Input value={lesson.topic} aria-label="Topic" onChange={(event) => update({ topic: event.target.value })} className="h-10" placeholder="What is the lesson about?" />
             </Field>
             <Field label="Your objective">
-              <Textarea value={lesson.objective} onChange={(event) => update({ objective: event.target.value })} className="min-h-16" placeholder="I can…" />
+              <Textarea value={lesson.objective} aria-label="Your objective" onChange={(event) => update({ objective: event.target.value })} className="min-h-16" placeholder="I can…" />
             </Field>
             <Field label="Vocabulary" hint="Target language — English, one per line.">
-              <Textarea value={lesson.vocabulary} onChange={(event) => update({ vocabulary: event.target.value })} className="min-h-32" />
+              <Textarea value={lesson.vocabulary} aria-label="Vocabulary" onChange={(event) => update({ vocabulary: event.target.value })} className="min-h-32" />
             </Field>
             <Field label="Pattern you are teaching">
-              <Input value={lesson.grammar} onChange={(event) => update({ grammar: event.target.value })} className="h-10" />
+              <Input value={lesson.grammar} aria-label="Pattern you are teaching" onChange={(event) => update({ grammar: event.target.value })} className="h-10" />
             </Field>
             <Field label="Culture note">
-              <Textarea value={lesson.culture} onChange={(event) => update({ culture: event.target.value })} className="min-h-16" />
+              <Textarea value={lesson.culture} aria-label="Culture note" onChange={(event) => update({ culture: event.target.value })} className="min-h-16" />
             </Field>
             <Field label="What makes speaking hard in this class?">
-              <Textarea value={lesson.notes} onChange={(event) => update({ notes: event.target.value })} className="min-h-16" />
+              <Textarea value={lesson.notes} aria-label="What makes speaking hard in this class?" onChange={(event) => update({ notes: event.target.value })} className="min-h-16" />
             </Field>
             <div className="flex flex-wrap gap-2">
               <Button type="submit" className="h-10">

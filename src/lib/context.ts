@@ -94,9 +94,17 @@ export function unique(items: string[]) {
 }
 
 export function bankFor(ctx: Ctx, model: string, index: number) {
-  const fromModel = model.split(/\s+/).filter((word) => word.replace(/[^\p{L}\p{N}]/gu, "").length > 1)
+  const known = [...ctx.pool.map((item) => item.term), ctx.pack.please, ctx.pack.thanks, ctx.pack.hello, ctx.pack.goodbye]
+    .filter((term) => term && model.includes(term))
+    .sort((a, b) => b.length - a.length)
+  let rest = model
+  for (const term of known) rest = rest.split(term).join(" ")
+  const leftovers = rest
+    .split(/\s+/)
+    .map((word) => word.trim())
+    .filter((word) => word.replace(/[^\p{L}\p{N}]/gu, "").length > 1)
   const extras = [at(ctx, index + 1).term, at(ctx, index + 2).term, ctx.pack.please, ctx.pack.thanks]
-  return unique([...fromModel, ...extras]).slice(0, 8)
+  return unique([...known, ...leftovers, ...extras]).slice(0, 8)
 }
 
 export function meaningOf(ctx: Ctx, key: TemplateKey, index: number) {
