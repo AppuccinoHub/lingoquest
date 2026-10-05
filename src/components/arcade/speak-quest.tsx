@@ -260,7 +260,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
           </div>
           <div className="flex flex-wrap justify-center gap-1.5">
             {results.map((r, i) => (
-              <span key={i} className={cn("size-3 rounded-full", r >= 0.85 ? "bg-emerald-500" : r >= 0.6 ? "bg-amber-400" : r > 0 ? "bg-orange-400" : "bg-muted-foreground/30")} />
+              <span key={i} className={cn("size-3 rounded-full", r >= 0.85 ? "bg-foreground" : r >= 0.6 ? "bg-foreground/55" : r > 0 ? "bg-foreground/35" : "bg-muted-foreground/30")} />
             ))}
           </div>
           <div className="flex flex-col justify-center gap-2 sm:flex-row">
@@ -313,7 +313,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
               {score !== null && (
                 <div className="mx-auto max-w-xs">
                   <div className="h-2 overflow-hidden rounded-full bg-background">
-                    <div className={cn("h-full rounded-full transition-all", stars >= 2 ? "bg-emerald-500" : "bg-amber-400")} style={{ width: `${Math.round(score * 100)}%` }} />
+                    <div className="h-full rounded-full bg-foreground/70 transition-all" style={{ width: `${Math.round(score * 100)}%` }} />
                   </div>
                   <p className="mt-1 text-xs text-muted-foreground">{Math.round(score * 100)}% match</p>
                 </div>
@@ -362,8 +362,8 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
                 type="button"
                 onClick={phase === "listening" ? stopListening : startListening}
                 className={cn(
-                  "grid size-28 place-items-center rounded-full text-white shadow-xl transition-transform active:scale-95",
-                  phase === "listening" ? "bg-rose-500 animate-pulse-ring" : "bg-primary hover:scale-105",
+                  "grid size-28 place-items-center rounded-full text-primary-foreground transition-colors",
+                  phase === "listening" ? "bg-foreground" : "bg-primary",
                 )}
                 aria-label={phase === "listening" ? "Stop listening" : "Start speaking"}
               >
@@ -371,7 +371,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
               </button>
               <p className="text-sm font-medium">{phase === "listening" ? "Listening… tap to stop" : !supported ? "Tap to start self-check mode" : "Tap, then speak"}</p>
               <p className="min-h-6 text-center text-muted-foreground">{transcript && <span>“{transcript}”</span>}</p>
-              {errorMsg && <p className="max-w-sm text-center text-sm text-amber-700 dark:text-amber-300">{errorMsg}</p>}
+              {errorMsg && <p className="max-w-sm text-center text-sm text-muted-foreground">{errorMsg}</p>}
               <div className="flex flex-wrap justify-center gap-2 text-xs">
                 {supported && phase !== "listening" && (
                   <Button variant="ghost" size="sm" onClick={beginFallback}>

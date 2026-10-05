@@ -10,11 +10,11 @@ export function XpPill() {
   const rank = rankFor(progress.xp);
   return (
     <div className="ml-2 flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-xs font-semibold shadow-sm">
-      <Star className="size-3.5 fill-amber-400 text-amber-500" />
+      <Star className="size-3.5 text-muted-foreground" />
       <span>{progress.xp.toLocaleString()} XP</span>
       <span className="hidden text-muted-foreground sm:inline">· {rank.name}</span>
       {progress.streakDays > 0 && (
-        <span className="flex items-center gap-0.5 text-orange-600">
+        <span className="flex items-center gap-0.5 text-muted-foreground">
           <Flame className="size-3.5" />
           {progress.streakDays}
         </span>

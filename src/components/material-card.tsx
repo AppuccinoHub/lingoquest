@@ -38,7 +38,7 @@ export function MaterialCard({ material: m }: { material: Material }) {
               <ModeBadge key={mode} mode={mode} />
             ))}
             {m.lowAnxiety && (
-              <span className="flex items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-200">
+              <span className="flex items-center gap-1 rounded-md border border-border bg-secondary px-1.5 py-0.5 text-[11px] font-semibold text-secondary-foreground">
                 <Heart className="size-3" /> Low-stakes
               </span>
             )}
@@ -96,9 +96,9 @@ export function MaterialCard({ material: m }: { material: Material }) {
           </div>
         )}
         {m.tip && (
-          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm dark:border-amber-900 dark:bg-amber-950">
-            <p className="font-semibold text-amber-900 dark:text-amber-100">Teacher tip</p>
-            <p className="text-amber-900/80 dark:text-amber-100/80">{m.tip}</p>
+          <div className="rounded-lg border border-border bg-muted p-3 text-sm">
+            <p className="font-semibold">Teacher tip</p>
+            <p className="text-muted-foreground">{m.tip}</p>
           </div>
         )}
         <div className="rounded-lg border border-border p-3 text-sm">

@@ -237,7 +237,7 @@ export function LessonForm({ initial }: Props) {
       </div>
 
       <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
-        <Card className="border-primary/30 bg-gradient-to-b from-accent/60 to-card">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Wand2 className="size-4 text-primary" /> {levelInfo.label}
@@ -253,7 +253,7 @@ export function LessonForm({ initial }: Props) {
               <span className="text-muted-foreground">{LEVEL_COUNTS[level]} activities tuned to this level</span>
             </p>
             {errors.length > 0 && (
-              <ul className="space-y-1 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
+              <ul className="space-y-1 rounded-lg border border-border bg-muted p-3 text-xs text-foreground">
                 {errors.map((e) => (
                   <li key={e}>• {e}</li>
                 ))}

@@ -145,19 +145,19 @@ export const MODES: { id: Mode; label: string; blurb: string; color: string }[] 
     id: "interpersonal",
     label: "Interpersonal",
     blurb: "Two-way, spontaneous negotiation of meaning",
-    color: "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-950 dark:text-rose-200 dark:border-rose-900",
+    color: "bg-secondary text-secondary-foreground border-border",
   },
   {
     id: "interpretive",
     label: "Interpretive",
     blurb: "Understanding authentic listening, reading, and viewing",
-    color: "bg-sky-100 text-sky-800 border-sky-200 dark:bg-sky-950 dark:text-sky-200 dark:border-sky-900",
+    color: "bg-muted text-foreground border-border",
   },
   {
     id: "presentational",
     label: "Presentational",
     blurb: "One-way, rehearsed speaking or writing for an audience",
-    color: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-900",
+    color: "bg-accent text-accent-foreground border-border",
   },
 ];
 
