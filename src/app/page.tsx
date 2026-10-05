@@ -3,11 +3,12 @@
 import { useMemo, useState } from "react";
 import {
   ArrowRight, BookOpen, Check, ChevronDown, CircleHelp, Clock3, Copy, Dices,
-  Eye, FileText, Gamepad2, GraduationCap, Headphones, Home, Library,
+  Eye, FileText, Gamepad2, GraduationCap, Headphones, Home as HomeIcon, Library,
   LockKeyhole, MessageCircleMore, Mic2, MoreHorizontal, Play, Plus,
   Presentation, Search, Settings, ShieldCheck, Sparkles, Star, Target,
   Trophy, Users, Volume2, WandSparkles, X, Zap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +29,7 @@ type Activity = {
   time: string;
   format: string;
   color: string;
-  icon: typeof MessageCircleMore;
+  icon: LucideIcon;
 };
 
 const activities: Activity[] = [
@@ -95,7 +96,7 @@ export default function Home() {
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-[232px] border-r border-[#e8e3d8] bg-[#fffdf8] px-4 py-5 lg:flex lg:flex-col">
         <Brand />
         <nav className="mt-9 space-y-1.5" aria-label="Main navigation">
-          <Nav icon={Home} label="Home" />
+          <Nav icon={HomeIcon} label="Home" />
           <Nav icon={WandSparkles} label="Lesson studio" active />
           <Nav icon={Library} label="My library" />
           <Nav icon={Gamepad2} label="Live games" />
@@ -262,7 +263,7 @@ export default function Home() {
       </main>
 
       <nav className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-around border-t border-[#e6e1d8] bg-[#fffdf8]/95 px-2 py-2 backdrop-blur lg:hidden">
-        <MobileNav icon={Home} label="Home" /><MobileNav icon={WandSparkles} label="Studio" active />
+        <MobileNav icon={HomeIcon} label="Home" /><MobileNav icon={WandSparkles} label="Studio" active />
         <button className="-mt-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[#f7f5ef] bg-[#ff6c55] text-white shadow-lg" aria-label="New lesson"><Plus className="h-6 w-6" /></button>
         <MobileNav icon={Library} label="Library" /><MobileNav icon={Gamepad2} label="Games" />
       </nav>
@@ -301,16 +302,16 @@ export default function Home() {
 function Brand() {
   return <div className="flex items-center gap-2.5"><span className="relative flex h-9 w-9 rotate-[-6deg] items-center justify-center rounded-[13px] bg-[#ff6c55] text-white shadow-[inset_-3px_-3px_0_rgba(0,0,0,.08)]"><MessageCircleMore className="h-5 w-5" fill="currentColor" /><span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#fffdf8] bg-[#f4b73f]" /></span><span className="text-xl font-black tracking-[-0.04em] text-[#17233d]">luma</span><span className="rounded-full bg-[#e4f4c5] px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-[#50722f]">beta</span></div>;
 }
-function Nav({ icon: Icon, label, active = false }: { icon: typeof Home; label: string; active?: boolean }) {
+function Nav({ icon: Icon, label, active = false }: { icon: LucideIcon; label: string; active?: boolean }) {
   return <button className={`flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-bold transition ${active ? "bg-[#ffe7e0] text-[#ca4e3b]" : "text-[#667083] hover:bg-[#f5f1e9] hover:text-[#27334a]"}`}><Icon className="h-[18px] w-[18px]" strokeWidth={active ? 2.5 : 2} />{label}{active && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#ef674f]" />}</button>;
 }
-function MobileNav({ icon: Icon, label, active = false }: { icon: typeof Home; label: string; active?: boolean }) {
+function MobileNav({ icon: Icon, label, active = false }: { icon: LucideIcon; label: string; active?: boolean }) {
   return <button className={`flex min-w-12 flex-col items-center gap-1 text-[9px] font-bold ${active ? "text-[#e95f49]" : "text-[#7e8693]"}`}><Icon className="h-5 w-5" />{label}</button>;
 }
 function Picker({ label, value, items }: { label: string; value: string; items: string[][] }) {
   return <label className="space-y-2"><span className="text-xs font-extrabold text-[#4d5668]">{label}</span><Select defaultValue={value}><SelectTrigger className="h-11 w-full rounded-xl border-[#ded9cf] bg-white font-semibold shadow-none"><SelectValue /></SelectTrigger><SelectContent>{items.map(([key, text]) => <SelectItem key={key} value={key}>{text}</SelectItem>)}</SelectContent></Select></label>;
 }
-function Pill({ icon: Icon, text }: { icon: typeof Clock3; text: string }) {
+function Pill({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
   return <button className="flex h-9 items-center gap-1.5 rounded-xl border border-[#e2ddd3] bg-white px-3 text-[10px] font-bold text-[#616a7b] transition hover:border-[#f1a798]"><Icon className="h-3.5 w-3.5 text-[#e66752]" />{text}</button>;
 }
 function ModeProgress({ label, value, width, color }: { label: string; value: string; width: string; color: string }) {
