@@ -36,7 +36,7 @@ export default function TeacherHome() {
         {lessons === undefined &&
           Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-44 animate-pulse rounded-xl bg-muted" />)}
 
-        {lessons?.map((lesson) => (
+        {lessons?.filter((l) => l.id !== "demo-la-comida" && l.id !== DEMO_LESSON.id).map((lesson) => (
           <LessonCard key={lesson.id} lesson={lesson} onDelete={() => remove(lesson)} />
         ))}
 

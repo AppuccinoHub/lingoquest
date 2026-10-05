@@ -39,7 +39,7 @@ export default function Home() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Speak Quest · Stage 2</p>
-                  <p className="text-lg font-semibold">Say it in Spanish</p>
+                  <p className="text-lg font-semibold">Say it in Italian</p>
                 </div>
                 <Badge className="rounded-full bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-200">
                   +25 XP
@@ -47,15 +47,15 @@ export default function Home() {
               </div>
               <div className="rounded-xl bg-muted p-4">
                 <p className="text-sm text-muted-foreground">Your prompt</p>
-                <p className="text-xl font-semibold">Me gusta el pollo con arroz.</p>
-                <p className="mt-1 text-sm text-muted-foreground">“I like chicken with rice.”</p>
+                <p className="text-xl font-semibold">Mi piace la pizza con il pomodoro.</p>
+                <p className="mt-1 text-sm text-muted-foreground">“I like pizza with tomato.”</p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg animate-pulse-ring">
                   <Mic className="size-7" />
                 </div>
                 <div className="flex-1 space-y-1">
-                  <p className="text-sm font-medium">You said: “me gusta el pollo con arroz”</p>
+                  <p className="text-sm font-medium">You said: “mi piace la pizza con il pomodoro”</p>
                   <div className="h-2 overflow-hidden rounded-full bg-muted">
                     <div className="h-full w-[96%] rounded-full bg-emerald-500" />
                   </div>
@@ -115,7 +115,7 @@ export default function Home() {
       <section className="mt-16 flex flex-col items-center gap-4 rounded-3xl bg-primary px-6 py-12 text-center text-primary-foreground">
         <h2 className="text-3xl font-bold tracking-tight">Start with the demo lesson</h2>
         <p className="max-w-xl text-primary-foreground/80">
-          A Novice Mid Spanish lesson on food is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
+          A Novice Mid Italian lesson on food, café ordering, and meals is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>

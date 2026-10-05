@@ -282,11 +282,11 @@ export interface Language {
 }
 
 export const LANGUAGES: Language[] = [
+  { id: "it", name: "Italian", speechCode: "it-IT", flag: "🇮🇹" },
   { id: "es", name: "Spanish", speechCode: "es-ES", flag: "🇪🇸" },
   { id: "es-mx", name: "Spanish (Latin America)", speechCode: "es-MX", flag: "🇲🇽" },
   { id: "fr", name: "French", speechCode: "fr-FR", flag: "🇫🇷" },
   { id: "de", name: "German", speechCode: "de-DE", flag: "🇩🇪" },
-  { id: "it", name: "Italian", speechCode: "it-IT", flag: "🇮🇹" },
   { id: "pt", name: "Portuguese", speechCode: "pt-BR", flag: "🇧🇷" },
   { id: "zh", name: "Mandarin Chinese", speechCode: "zh-CN", flag: "🇨🇳", noSpaces: true },
   { id: "ja", name: "Japanese", speechCode: "ja-JP", flag: "🇯🇵", noSpaces: true },

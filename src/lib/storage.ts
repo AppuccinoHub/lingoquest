@@ -56,12 +56,14 @@ export function deleteLesson(id: string): Lesson[] {
 }
 
 export function findLesson(id: string): Lesson | undefined {
-  if (id === DEMO_LESSON.id) return DEMO_LESSON;
+  if (id === DEMO_LESSON.id || id === "demo-la-comida") return DEMO_LESSON;
   return loadLessons().find((l) => l.id === id);
 }
 
 export function allLessonsWithDemo(): Lesson[] {
-  return [...loadLessons(), DEMO_LESSON];
+  // If an old spanish demo was saved in localStorage, filter it out so the Italian demo takes precedence
+  const stored = loadLessons().filter((l) => l.id !== "demo-la-comida" && l.id !== DEMO_LESSON.id);
+  return [...stored, DEMO_LESSON];
 }
 
 export function loadProgress(): StudentProgress {

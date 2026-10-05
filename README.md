@@ -37,7 +37,7 @@ npm install
 npm run dev
 ```
 
-Open <http://127.0.0.1:4871>. A demo lesson (Spanish, Novice Mid, food) is built in.
+Open <http://127.0.0.1:4871>. A demo lesson (Italian, Novice Mid, food & café culture) is built in.
 
 Other scripts:
 

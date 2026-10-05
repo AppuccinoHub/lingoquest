@@ -20,9 +20,11 @@ interface Props {
   initial?: Lesson;
 }
 
-const STARTER_VOCAB = `la manzana = the apple
-el pan = the bread
-el queso = the cheese`;
+const STARTER_VOCAB = `la pizza = the pizza
+la pasta = the pasta
+il formaggio = the cheese
+il gelato = the ice cream / gelato
+il pane = the bread`;
 
 function parseVocab(text: string): VocabItem[] {
   return text
@@ -50,7 +52,7 @@ function linesToArray(text: string): string[] {
 export function LessonForm({ initial }: Props) {
   const router = useRouter();
   const [title, setTitle] = useState(initial?.title ?? "");
-  const [languageId, setLanguageId] = useState(initial?.languageId ?? "es");
+  const [languageId, setLanguageId] = useState(initial?.languageId ?? "it");
   const [level, setLevel] = useState<ActflLevelId>(initial?.level ?? "novice-mid");
   const [theme, setTheme] = useState(initial?.theme ?? "");
   const [essentialQuestion, setEssentialQuestion] = useState(initial?.essentialQuestion ?? "");
@@ -118,7 +120,7 @@ export function LessonForm({ initial }: Props) {
           <CardContent className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-1.5 sm:col-span-2">
               <Label htmlFor="title">Lesson title</Label>
-              <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. La comida: What do you like to eat?" />
+              <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Il cibo e i sapori: What do you like to eat?" />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="language">Target language</Label>
@@ -146,7 +148,7 @@ export function LessonForm({ initial }: Props) {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="eq">Essential question</Label>
-              <Input id="eq" value={essentialQuestion} onChange={(e) => setEssentialQuestion(e.target.value)} placeholder="¿Qué te gusta comer y por qué?" />
+              <Input id="eq" value={essentialQuestion} onChange={(e) => setEssentialQuestion(e.target.value)} placeholder="Cosa ti piace mangiare e perché?" />
             </div>
           </CardContent>
         </Card>
@@ -189,14 +191,14 @@ export function LessonForm({ initial }: Props) {
                 rows={5}
                 value={sentencesText}
                 onChange={(e) => setSentencesText(e.target.value)}
-                placeholder={"One per line, in the target language:\nMe gusta el pollo con arroz.\n¿Qué te gusta comer?"}
+                placeholder={"One per line, in the target language:\nMi piace la pizza con il pomodoro.\nCosa ti piace mangiare?"}
               />
               <p className="text-xs text-muted-foreground">Used for Speak Quest, Sentence Scramble, dictations, and sequencing tasks. More sentences = longer games.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label htmlFor="structures">Structures / functional chunks</Label>
-                <Textarea id="structures" rows={3} value={structuresText} onChange={(e) => setStructuresText(e.target.value)} placeholder={"me gusta + noun\n¿Qué te gusta…?"} />
+                <Textarea id="structures" rows={3} value={structuresText} onChange={(e) => setStructuresText(e.target.value)} placeholder={"mi piace + noun\nCosa ti piace…?"} />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="culture">Culture note (optional)</Label>

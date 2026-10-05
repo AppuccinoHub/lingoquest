@@ -132,10 +132,10 @@ export function similarity(said: string, target: string, noSpaces = false): numb
 }
 
 const ARTICLES = new Set([
-  "el", "la", "los", "las", "un", "una", "unos", "unas", // es
-  "le", "les", "l", "une", "des", "du", // fr
+  "il", "lo", "la", "l", "i", "gli", "le", "un", "uno", "una", "un'", // it
+  "el", "los", "las", "unas", "unos", // es
+  "le", "des", "du", // fr
   "der", "die", "das", "den", "dem", "ein", "eine", "einen", // de
-  "il", "lo", "gli", "i", "uno", // it
   "o", "a", "os", "as", "um", "uma", // pt
   "the", "an", // en
 ]);
