@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9ff;
+  --foreground: #1a1033;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
+
+@keyframes pop-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.animate-pop-in { animation: pop-in 0.25s ease-out; }
+
+@media print {
+  .no-print { display: none !important; }
+  .print-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd !important; }
+}
