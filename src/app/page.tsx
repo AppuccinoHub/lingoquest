@@ -1,279 +1,140 @@
-'use client';
-
-import React, { useState } from 'react';
-import { LessonPlan } from '@/types/actfl';
-import { SAMPLE_LESSONS } from '@/lib/sampleLessons';
-import { 
-  Sparkles, 
-  BookOpen, 
-  Gamepad2, 
-  Layers, 
-  Download, 
-  Volume2, 
-  SlidersHorizontal,
-  Flame,
-  Award,
-  Zap,
-  HelpCircle,
-  FolderOpen
-} from 'lucide-react';
-import LessonStudio from '@/components/LessonStudio';
-import GamifiedArcade from '@/components/GamifiedArcade';
-import MaterialsLibrary from '@/components/MaterialsLibrary';
-import ClassroomKit from '@/components/ClassroomKit';
-import VoiceCoachSettingsModal from '@/components/VoiceCoachSettingsModal';
+import Link from "next/link";
+import { ArrowRight, Gamepad2, GraduationCap, Mic, ShieldCheck, Sparkles, Timer } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { FIVE_CS, MODES } from "@/lib/actfl";
+import { TOTAL_TEMPLATES } from "@/lib/generator";
+import { DEMO_LESSON_ID } from "@/lib/demo-lesson";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'studio' | 'arcade' | 'materials' | 'classroom'>('arcade');
-  const [lessons, setLessons] = useState<LessonPlan[]>(SAMPLE_LESSONS);
-  const [currentLessonId, setCurrentLessonId] = useState<string>(SAMPLE_LESSONS[0].id);
-  const [xp, setXp] = useState<number>(380);
-  const [streak, setStreak] = useState<number>(4);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [whisperModeActive, setWhisperModeActive] = useState<boolean>(true);
-
-  const activeLesson = lessons.find(l => l.id === currentLessonId) || lessons[0];
-
-  const handleEarnXP = (amount: number) => {
-    setXp(prev => prev + amount);
-  };
-
-  const handleUpdateLesson = (updatedLesson: LessonPlan) => {
-    setLessons(prev => prev.map(l => l.id === updatedLesson.id ? updatedLesson : l));
-  };
-
-  const handleCreateNewLesson = (newLesson: LessonPlan) => {
-    setLessons(prev => [newLesson, ...prev]);
-    setCurrentLessonId(newLesson.id);
-  };
-
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black">
-      {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          
-          {/* Logo & Brand */}
-          <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20 text-white font-black text-xl">
-                ⚡
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-                    LinguaQuest <span className="text-amber-400 font-mono text-sm px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">ACTFL</span>
-                  </span>
-                  <span className="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-medium">
-                    Low-Anxiety Speaking
-                  </span>
+    <div className="mx-auto w-full max-w-6xl px-4 pb-20">
+      <section className="grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
+        <div className="space-y-6">
+          <Badge variant="secondary" className="gap-1.5 rounded-full px-3 py-1">
+            <Sparkles className="size-3.5" /> Built on the ACTFL Proficiency Guidelines & Can-Do Statements
+          </Badge>
+          <h1 className="text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl">
+            One lesson in. <span className="text-primary">Dozens of activities</span> out. Speaking practice kids actually want.
+          </h1>
+          <p className="max-w-prose text-lg text-muted-foreground">
+            Paste your vocabulary and model sentences, pick an ACTFL level, and LingoQuest generates {TOTAL_TEMPLATES}{" "}
+            level-appropriate warm-ups, interpretive tasks, partner activities, games, rubrics, and homework. Then students
+            practise speaking privately with their device in an arcade that rewards every brave attempt.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button render={<Link href="/teacher/new" />} size="lg" className="h-11 px-5 text-base"><GraduationCap /> Build a lesson</Button>
+            <Button render={<Link href={`/play/${DEMO_LESSON_ID}`} />} size="lg" variant="outline" className="h-11 px-5 text-base"><Gamepad2 /> Try the student arcade</Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            No accounts, no uploads. Everything is saved on this device; share lessons with students via a link.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 via-fuchsia-200/30 to-amber-100/40 blur-2xl dark:from-primary/20 dark:via-fuchsia-900/20 dark:to-amber-900/10" />
+          <Card className="overflow-hidden border-border/70 shadow-xl">
+            <CardContent className="space-y-4 p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Speak Quest · Stage 2</p>
+                  <p className="text-lg font-semibold">Say it in Spanish</p>
                 </div>
-                <p className="text-xs text-slate-400 hidden sm:block">
-                  Teacher Lesson Generator & Gamified Speaking Arcades
-                </p>
+                <Badge className="rounded-full bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-200">
+                  +25 XP
+                </Badge>
               </div>
-            </div>
-
-            {/* Mobile lesson selector */}
-            <div className="sm:hidden">
-              <button 
-                onClick={() => setIsSettingsOpen(true)}
-                className="p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300"
-              >
-                <SlidersHorizontal className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Quick Lesson Switcher dropdown in header */}
-          <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
-            <div className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700/80 rounded-xl px-3 py-1.5 text-xs text-slate-300">
-              <FolderOpen className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-slate-400 font-medium">Active Unit:</span>
-              <select
-                aria-label="Active Unit"
-                value={currentLessonId}
-                onChange={(e) => setCurrentLessonId(e.target.value)}
-                className="bg-transparent font-semibold text-slate-100 focus:outline-none cursor-pointer max-w-[180px] sm:max-w-[220px] truncate"
-              >
-                {lessons.map(l => (
-                  <option key={l.id} value={l.id} className="bg-slate-900 text-slate-100">
-                    {l.title} ({l.targetLanguage})
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Gamification Stats: Streak & XP */}
-            <div className="flex items-center gap-2 ml-auto">
-              <div 
-                title="Daily streak keeps speaking anxiety low with small micro-doses!"
-                className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-2.5 py-1 rounded-xl text-xs font-bold"
-              >
-                <Flame className="w-3.5 h-3.5 fill-amber-400 animate-pulse" />
-                <span>{streak}d</span>
+              <div className="rounded-xl bg-muted p-4">
+                <p className="text-sm text-muted-foreground">Your prompt</p>
+                <p className="text-xl font-semibold">Me gusta el pollo con arroz.</p>
+                <p className="mt-1 text-sm text-muted-foreground">“I like chicken with rice.”</p>
               </div>
-
-              <div 
-                title="Class & Student XP: Unlocks new low-pressure avatar badges"
-                className="flex items-center gap-1.5 bg-purple-500/10 border border-purple-500/30 text-purple-300 px-3 py-1 rounded-xl text-xs font-bold"
-              >
-                <Zap className="w-3.5 h-3.5 fill-purple-400 text-purple-400" />
-                <span>{xp} XP</span>
+              <div className="flex items-center gap-4">
+                <div className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg animate-pulse-ring">
+                  <Mic className="size-7" />
+                </div>
+                <div className="flex-1 space-y-1">
+                  <p className="text-sm font-medium">You said: “me gusta el pollo con arroz”</p>
+                  <div className="h-2 overflow-hidden rounded-full bg-muted">
+                    <div className="h-full w-[96%] rounded-full bg-emerald-500" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">96% match · ⭐⭐⭐ · Only you can hear this</p>
+                </div>
               </div>
-
-              {/* Low-Anxiety Mode Toggle Pill */}
-              <button
-                onClick={() => setWhisperModeActive(!whisperModeActive)}
-                className={`hidden md:flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-xl border transition-all ${
-                  whisperModeActive 
-                    ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-300 shadow-sm shadow-emerald-500/20' 
-                    : 'bg-slate-800 border-slate-700 text-slate-400'
-                }`}
-                title="Whisper & Robot Mode: Audio pitch shifting & soft threshold for shy speakers"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>🤫 Shy Mode: {whisperModeActive ? 'ON' : 'OFF'}</span>
-              </button>
-
-              <button 
-                onClick={() => setIsSettingsOpen(true)}
-                className="hidden sm:flex items-center gap-1.5 p-1.5 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-300 transition-colors"
-              >
-                <SlidersHorizontal className="w-3.5 h-3.5" />
-                <span>Audio/Voice</span>
-              </button>
-            </div>
-
-          </div>
+            </CardContent>
+          </Card>
         </div>
+      </section>
 
-        {/* Tab Navigation Menu */}
-        <div className="max-w-7xl mx-auto mt-3 flex items-center gap-1 border-t border-slate-800/80 pt-2.5 overflow-x-auto scrollbar-none">
-          <button
-            onClick={() => setActiveTab('arcade')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-              activeTab === 'arcade'
-                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
-          >
-            <Gamepad2 className="w-4 h-4" />
-            <span>🎮 Kids Speaking Arcade</span>
-            <span className="text-[10px] bg-purple-400/20 text-purple-200 px-1.5 py-0.5 rounded-full uppercase tracking-wider font-bold">
-              Low-Anxiety
-            </span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('studio')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-              activeTab === 'studio'
-                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
-          >
-            <Sparkles className="w-4 h-4 text-amber-300" />
-            <span>✨ Teacher ACTFL Studio</span>
-            <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded-full font-bold">
-              1-Click AI
-            </span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('materials')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-              activeTab === 'materials'
-                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
-          >
-            <Layers className="w-4 h-4" />
-            <span>📚 Supplemental Materials Library</span>
-            <span className="text-[10px] bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded-full font-semibold">
-              {activeLesson.materials.length} generated
-            </span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('classroom')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all shrink-0 ${
-              activeTab === 'classroom'
-                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-            }`}
-          >
-            <Download className="w-4 h-4" />
-            <span>🖨️ Export & Projector Mode</span>
-          </button>
-        </div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-8">
-        {activeTab === 'arcade' && (
-          <GamifiedArcade 
-            lesson={activeLesson}
-            onEarnXP={handleEarnXP}
-            whisperModeActive={whisperModeActive}
-          />
-        )}
-
-        {activeTab === 'studio' && (
-          <LessonStudio 
-            activeLesson={activeLesson}
-            onUpdateLesson={handleUpdateLesson}
-            onCreateLesson={handleCreateNewLesson}
-            onSwitchToMaterials={() => setActiveTab('materials')}
-          />
-        )}
-
-        {activeTab === 'materials' && (
-          <MaterialsLibrary 
-            lesson={activeLesson}
-            onUpdateLesson={handleUpdateLesson}
-            onLaunchInArcade={() => setActiveTab('arcade')}
-          />
-        )}
-
-        {activeTab === 'classroom' && (
-          <ClassroomKit 
-            lesson={activeLesson}
-          />
-        )}
-      </main>
-
-      {/* Floating Shy Mode / Teacher Info banner */}
-      <footer className="border-t border-slate-800/80 bg-slate-900/60 py-4 px-6 text-xs text-slate-400 flex flex-col md:flex-row items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
-          <span>
-            <strong>ACTFL Aligned:</strong> World-Readiness Standards (5 C&apos;s: Communication, Cultures, Connections, Comparisons, Communities).
-          </span>
-        </div>
-        <div className="flex items-center gap-4 text-slate-400">
-          <span>Target Level: <strong className="text-slate-200">{activeLesson.level}</strong></span>
-          <span>•</span>
-          <span>Affective Filter: <strong className="text-emerald-400">Ultra-Low (Gamified)</strong></span>
-          <span>•</span>
-          <button 
-            onClick={() => setIsSettingsOpen(true)}
-            className="text-indigo-400 hover:underline flex items-center gap-1"
-          >
-            <SlidersHorizontal className="w-3 h-3" /> Voice & Audio Controls
-          </button>
-        </div>
-      </footer>
-
-      {/* Voice Coach & Audio Settings Modal */}
-      {isSettingsOpen && (
-        <VoiceCoachSettingsModal 
-          isOpen={isSettingsOpen} 
-          onClose={() => setIsSettingsOpen(false)}
-          whisperModeActive={whisperModeActive}
-          setWhisperModeActive={setWhisperModeActive}
+      <section className="grid gap-4 md:grid-cols-3">
+        <Feature
+          icon={Timer}
+          title="Minutes, not weekends"
+          body="Enter one lesson once. Get warm-ups, info-gaps, role-plays, IPAs, exit tickets, and 5 Cs tasks, each pre-filled with your vocabulary and filtered to the proficiency level you teach."
         />
-      )}
+        <Feature
+          icon={ShieldCheck}
+          title="Private speaking practice"
+          body="Students told us speaking in front of the class is embarrassing. In the arcade they talk to their own device; speech recognition scores them and nobody else hears a thing."
+        />
+        <Feature
+          icon={Gamepad2}
+          title="XP for every brave attempt"
+          body="Ranks named after ACTFL sublevels, streaks, combo multipliers, and badges that reward attempts, not perfection. Students self-assess with the lesson's Can-Do statements."
+        />
+      </section>
+
+      <section className="mt-16 grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">Three modes of communication</h2>
+          <p className="mt-2 text-muted-foreground">Every generated activity is tagged with the ACTFL mode it targets so you can balance a unit at a glance.</p>
+          <ul className="mt-4 space-y-3">
+            {MODES.map((m) => (
+              <li key={m.id} className="flex items-start gap-3 rounded-xl border border-border/70 bg-card p-4">
+                <span className={`mt-0.5 rounded-md border px-2 py-0.5 text-xs font-semibold ${m.color}`}>{m.label}</span>
+                <span className="text-sm text-muted-foreground">{m.blurb}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">The 5 Cs, built in</h2>
+          <p className="mt-2 text-muted-foreground">Culture, Connections, Comparisons, and Communities tasks are generated alongside Communication, so your unit meets the World-Readiness Standards.</p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {FIVE_CS.map((c) => (
+              <li key={c.id} className="rounded-xl border border-border/70 bg-card p-4">
+                <p className="font-semibold">{c.label}</p>
+                <p className="text-sm text-muted-foreground">{c.blurb}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-16 flex flex-col items-center gap-4 rounded-3xl bg-primary px-6 py-12 text-center text-primary-foreground">
+        <h2 className="text-3xl font-bold tracking-tight">Start with the demo lesson</h2>
+        <p className="max-w-xl text-primary-foreground/80">
+          A Novice Mid Spanish lesson on food is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
+        </p>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
+        </div>
+      </section>
     </div>
+  );
+}
+
+function Feature({ icon: Icon, title, body }: { icon: typeof Timer; title: string; body: string }) {
+  return (
+    <Card className="border-border/70">
+      <CardContent className="space-y-3 p-6">
+        <span className="grid size-10 place-items-center rounded-xl bg-accent text-accent-foreground">
+          <Icon className="size-5" />
+        </span>
+        <h3 className="text-lg font-semibold">{title}</h3>
+        <p className="text-sm text-muted-foreground">{body}</p>
+      </CardContent>
+    </Card>
   );
 }

@@ -1,82 +1,75 @@
-# LinguaQuest ACTFL ⚡
+# LingoQuest
 
-> **ACTFL-Aligned Language Curriculum Co-Pilot & Low-Anxiety Gamified Speaking Arcade**
+An ACTFL-aligned companion for world-language teachers and their students.
 
-LinguaQuest is designed specifically for world language educators and students. It bridges the gap between rigorous **ACTFL World-Readiness Standards** (5 C's & 3 Modes of Communication) and the psychological barrier of **classroom speaking anxiety** (the Affective Filter).
+- **Teacher studio** — enter one lesson (language, ACTFL proficiency target, theme, vocabulary, model sentences, structures, culture note) and get **50+ supplemental materials** generated instantly: warm-ups, interpretive tasks, interpersonal activities, presentational tasks, classroom games, formative assessments, an IPA blueprint, a speaking rubric, 5 Cs culture tasks, and homework. Every material is filtered to the proficiency level, pre-filled with your vocabulary, tagged with its mode of communication, and linked to an NCSSFL-ACTFL Can-Do statement.
+- **Student arcade** — a gamified, private way to practise speaking. Students talk to their own device, not the class. Speech recognition scores them, every attempt earns XP, and ranks are named after the ACTFL sublevels.
 
-Students frequently report that speaking a new foreign language in front of the whole class is embarrassing and intimidating, and that they would rather play games. LinguaQuest transforms required oral proficiency practice into low-stakes multiplayer RPG quests, secret agent whisper codes, and interactive game stations, while empowering teachers to generate **dozens of supplemental materials in 1 click**.
+## What is ACTFL-aligned here
 
----
+| ACTFL concept | Where it appears |
+| --- | --- |
+| Proficiency Guidelines (Novice Low → Advanced High) | Lesson level picker, material filtering, rubric target column, arcade rank names |
+| Three modes of communication | Every material is tagged Interpersonal / Interpretive / Presentational; mode balance chart per lesson |
+| NCSSFL-ACTFL Can-Do Statements | Suggested lesson goals per sublevel, Can-Do alignment on every material, student self-check in the arcade |
+| World-Readiness Standards (5 Cs) | Dedicated Cultures / Connections / Comparisons / Communities materials |
+| Integrated Performance Assessment | IPA blueprint generated per lesson |
+| Performance descriptors | Printable speaking rubric |
 
-## 🌟 Key Features
+## Games
 
-### 1. 🎮 Kids Low-Anxiety Speaking Arcade
-- **🤖 Conversational RPG Voice Quest:** Micro-dialogue with sympathetic NPCs (e.g. café servers, metro conductors, snack shop attendants). Kids can tap zero-stress sentence frames, preview native pronunciation, or speak/whisper to advance the storyline.
-- **🌊 Sound Wave Hero:** Rhythm & intonation matching arcade where students mimic speech contours with pitch visualizers and sound synthesis.
-- **⚡ Emoji Speed Match:** Non-verbal rapid recognition game for introverted students or quiet warmups.
-- **🕶️ Spy Whisper Battle:** Cooperative 2-player secret agent missions where kids whisper codewords to partners without spotlight or whole-room judgment.
-- **🤫 Low-Anxiety Mode & Audio Modifiers:** Web Audio synthesizer and Speech Recognition tuning with soft volume acceptance, robot voice, slow mode, and whisper filters.
-- **🔥 Gamification Mechanics:** XP progression, streaks, combo multipliers, sound effects, and confetti celebrations.
+| Game | Skill | Why it lowers speaking anxiety |
+| --- | --- | --- |
+| **Speak Quest** | Speaking | Students repeat words and sentences, then answer open prompts, to their own device. Speech recognition (Web Speech API) scores privately; browsers without it fall back to a timed self-check. |
+| **Vocab Blitz** | Reading / recognition | 60-second multiple-choice sprint with combo multipliers. |
+| **Sentence Scramble** | Reading / writing | Rebuild model sentences from shuffled chunks; optional read-aloud bonus. |
 
-### 2. ✨ Teacher ACTFL Lesson Studio
-- **1-Click Generation of Dozens of Materials:** Generates 10+ distinct formats from any lesson theme and vocabulary list:
-  1. *☕ 3-Minute Silent Bellringers*
-  2. *🔐 Cooperative Classroom Escape Rooms*
-  3. *🥊 March Madness Vocabulary Brackets*
-  4. *📊 Lego "Sentence Architecture" Organizers*
-  5. *🕶️ Secret Agent Whispering Speaking Cards*
-  6. *🎟️ 3-2-1 Cultural Exit Tickets*
-  7. *🎮 Gamer Level-Up ACTFL Can-Do Rubrics*
-  8. *📰 Authentic Real-World Reading Scavenger Hunts*
-  9. *🛡️ Confidence Co-Pilot Peer Shield Cards*
-  10. *🎲 Roll & Chat Voice-Modifier Game Stations*
-- **Standards Mapping:** Aligns automatically to:
-  - **Proficiency Levels:** Novice Low/Mid/High, Intermediate Low/Mid/High, Advanced
-  - **3 Communication Modes:** Interpersonal, Interpretive, Presentational
-  - **The 5 C's:** Communication, Cultures, Connections, Comparisons, Communities
-- **Pre-loaded Curricula:** Spanish (El Mercado y La Cafetería), French (Flâner dans Paris), Japanese (Tokyo Konbini Quests), plus instant blank unit templates.
+XP, streaks, badges, best scores, and Can-Do self-checks are stored in the browser's `localStorage`. There are no accounts and no server-side storage.
 
-### 3. 📚 Materials Library & Classroom Kit
-- **Worksheet & Print Engine:** Clean markdown rendering ready for single-click printing or copying.
-- **LMS Ready:** Export directly formatted for Canvas LMS, Schoology, or Google Classroom.
-- **Big Screen Projector Mode:** Fullscreen presenter slides for whole-class interactive warmups.
-- **Tactile Flashcards:** Pocket cutouts for partner desk games.
+## Sharing lessons with students
 
----
+Lessons live on the teacher's device. "Copy student link" encodes the whole lesson into a URL (`/play/import#…`); opening it on any device saves the lesson locally and launches the arcade.
 
-## 🚀 Quickstart & Development
+## Running locally
 
-### Requirements
-- Node.js 18+ (tested on Node v22)
-- npm or yarn
-
-### Installation
 ```bash
-# Clone the repository
-git clone <repo-url>
-cd linguaquest-actfl
-
-# Install dependencies
 npm install
-
-# Run the dev server on port 43128
-npm run dev -- -p 43128
+npm run dev
 ```
 
-Open your browser to:
-```
-http://localhost:43128
-```
+Open <http://127.0.0.1:4871>. A demo lesson (Spanish, Novice Mid, food) is built in.
 
-### Production Build
+Other scripts:
+
 ```bash
-npm run build
-npm start
+npm run lint   # ESLint
+npm run build  # production build
+npm start      # serve the production build
 ```
 
----
+## Stack
 
-## 🏛️ Pedagogy & Standards Alignment
-LinguaQuest builds on:
-- **Stephen Krashen's Affective Filter Hypothesis:** Lowering anxiety, self-consciousness, and stress directly correlates to increased language acquisition.
-- **NCSSFL-ACTFL Can-Do Statements:** Performance indicators centered on what learners can do with language in real-world contexts.
+Next.js 16 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, lucide-react, sonner. Speech features use the browser's Web Speech API (`SpeechRecognition` for scoring, `speechSynthesis` for models); Chrome and Edge give the best results.
+
+## Project layout
+
+```
+src/
+  app/
+    page.tsx                 landing
+    teacher/                 lesson list, new lesson, lesson materials, edit
+    play/                    arcade home, lesson hub, three games, link import
+  components/
+    lesson-form.tsx          teacher lesson builder
+    material-card.tsx        generated activity card + detail dialog
+    rubric-table.tsx         ACTFL speaking rubric
+    arcade/                  games, progress panel, rewards
+    ui/                      shadcn/ui primitives
+  lib/
+    actfl.ts                 levels, modes, Can-Do statements, languages, rubric
+    generator.ts             material templates and the generator
+    gamification.ts          XP, ranks, badges, streaks
+    speech.ts                Web Speech helpers and scoring
+    storage.ts               localStorage persistence and share links
+    demo-lesson.ts           built-in sample lesson
+```

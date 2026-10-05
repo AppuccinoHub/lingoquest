@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,21 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LinguaQuest ACTFL | Gamified Low-Anxiety Language Learning & Teacher Studio",
-  description: "ACTFL-aligned language app that lets teachers generate dozens of supplemental materials in seconds and gamifies speaking with low-anxiety whispering quests.",
+  title: {
+    default: "LingoQuest — ACTFL-aligned lesson materials & speaking games",
+    template: "%s · LingoQuest",
+  },
+  description:
+    "Turn one world-language lesson into dozens of ACTFL-aligned supplemental activities, and give students a private, gamified way to practise speaking.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#5b3df5",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <SiteHeader />
+        <main className="flex-1 flex flex-col">{children}</main>
+        <Toaster position="top-center" richColors />
+      </body>
     </html>
   );
 }
