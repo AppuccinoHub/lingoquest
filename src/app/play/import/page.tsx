@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { playLessonPath } from "@/lib/paths";
 import { decodeSharedLesson, saveLesson } from "@/lib/storage";
 
 export default function ImportLessonPage() {
@@ -16,7 +17,7 @@ export default function ImportLessonPage() {
     const lesson = encoded ? decodeSharedLesson(encoded) : null;
     if (lesson) {
       saveLesson(lesson);
-      router.replace(`/play/${lesson.id}`);
+      router.replace(playLessonPath(lesson.id));
       return;
     }
     const frame = requestAnimationFrame(() =>

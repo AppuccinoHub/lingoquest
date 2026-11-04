@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { FIVE_CS, MODES } from "@/lib/actfl";
 import { TOTAL_TEMPLATES } from "@/lib/generator";
 import { DEMO_LESSON_ID } from "@/lib/demo-lesson";
+import { playLessonPath, teacherLessonPath } from "@/lib/paths";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button render={<Link href="/teacher/new" />} size="lg" className="h-11 px-5 text-base"><GraduationCap /> Build a lesson</Button>
-            <Button render={<Link href={`/play/${DEMO_LESSON_ID}`} />} size="lg" variant="outline" className="h-11 px-5 text-base"><Gamepad2 /> Try the student arcade</Button>
+            <Button render={<Link href={playLessonPath(DEMO_LESSON_ID)} />} size="lg" variant="outline" className="h-11 px-5 text-base"><Gamepad2 /> Try the student arcade</Button>
           </div>
           <p className="text-sm text-muted-foreground">
             No accounts, no uploads. Everything is saved on this device; share lessons with students via a link.
@@ -118,7 +119,7 @@ export default function Home() {
           A Novice Mid Italian lesson on food, café ordering, and meals is pre-loaded. Open it in the teacher studio to see every generated material, or jump straight into the arcade.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button render={<Link href={`/teacher/${DEMO_LESSON_ID}`} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
+          <Button render={<Link href={teacherLessonPath(DEMO_LESSON_ID)} />} size="lg" variant="secondary" className="h-11 px-5 text-base">See the generated materials <ArrowRight /></Button>
         </div>
       </section>
     </div>

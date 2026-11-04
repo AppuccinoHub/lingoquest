@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { teacherLessonPath } from "@/lib/paths";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LessonForm } from "@/components/lesson-form";
 import { findLesson, useStored } from "@/lib/storage";
 
 export default function EditLessonPage() {
-  const params = useParams<{ id: string }>();
-  const [lesson] = useStored(() => findLesson(params.id) ?? null, params.id);
+  const id = useSearchParams().get("id") ?? "";
+  const [lesson] = useStored(() => findLesson(id) ?? null, id);
 
   if (lesson === undefined) {
     return (
@@ -33,7 +34,7 @@ export default function EditLessonPage() {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-8">
-      <Link href={`/teacher/${lesson.id}`} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+      <Link href={teacherLessonPath(lesson.id)} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
         <ArrowLeft className="size-4" /> Back to materials
       </Link>
       <div className="mb-6 mt-3">

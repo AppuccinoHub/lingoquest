@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { getLanguage, getLevel } from "@/lib/actfl";
 import { DEMO_LESSON } from "@/lib/demo-lesson";
 import { LEVEL_COUNTS } from "@/lib/generator";
+import { teacherLessonPath } from "@/lib/paths";
 import { deleteLesson, useLessons } from "@/lib/storage";
 import type { Lesson } from "@/lib/types";
 
@@ -75,7 +76,7 @@ function LessonCard({ lesson, demo, onDelete }: { lesson: Lesson; demo?: boolean
           {demo && <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-950 dark:text-amber-200">Demo</Badge>}
         </div>
         <CardTitle className="mt-2 line-clamp-2 text-lg leading-snug">
-          <Link href={`/teacher/${lesson.id}`} className="after:absolute after:inset-0">
+          <Link href={teacherLessonPath(lesson.id)} className="after:absolute after:inset-0">
             {lesson.title}
           </Link>
         </CardTitle>

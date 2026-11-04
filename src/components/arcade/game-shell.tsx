@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { playLessonPath } from "@/lib/paths";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GAMES } from "@/components/arcade/games";
@@ -14,14 +15,14 @@ interface Props {
 }
 
 export function GameShell({ gameId, children }: Props) {
-  const params = useParams<{ id: string }>();
-  const [lesson] = useStored(() => findLesson(params.id) ?? null, params.id);
+  const id = useSearchParams().get("id") ?? "";
+  const [lesson] = useStored(() => findLesson(id) ?? null, id);
   const game = GAMES.find((g) => g.id === gameId)!;
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-6">
       <div className="flex items-center justify-between">
-        <Link href={lesson ? `/play/${lesson.id}` : "/play"} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+        <Link href={lesson ? playLessonPath(lesson.id) : "/play"} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-4" /> {lesson ? lesson.title : "Arcade"}
         </Link>
         <span className="text-sm font-semibold">{game.name}</span>

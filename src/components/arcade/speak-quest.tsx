@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { playLessonPath } from "@/lib/paths";
 import { ArrowRight, Check, Ear, EyeOff, Mic, MicOff, RotateCcw, SkipForward, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -267,7 +268,7 @@ export function SpeakQuest({ lesson }: { lesson: Lesson }) {
             <Button onClick={restart} className="h-10">
               <RotateCcw /> Play again with new prompts
             </Button>
-            <Button render={<Link href={`/play/${lesson.id}`} />} variant="outline" className="h-10">Back to lesson <ArrowRight /></Button>
+            <Button render={<Link href={playLessonPath(lesson.id)} />} variant="outline" className="h-10">Back to lesson <ArrowRight /></Button>
           </div>
         </CardContent>
       </Card>

@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { playLessonPath, studentImportUrl, teacherEditPath } from "@/lib/paths";
 import { ArrowLeft, Copy, Gamepad2, Heart, Link2, Pencil, Printer, Search } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
@@ -19,8 +20,8 @@ import { useStored } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 export default function LessonPage() {
-  const params = useParams<{ id: string }>();
-  const [lesson] = useStored(() => findLesson(params.id) ?? null, params.id);
+  const id = useSearchParams().get("id") ?? "";
+  const [lesson] = useStored(() => findLesson(id) ?? null, id);
 
   if (lesson === undefined) {
     return (
@@ -109,7 +110,7 @@ function LessonView({ lesson }: { lesson: Lesson }) {
   }
 
   async function shareLink() {
-    const url = `${window.location.origin}/play/import#${encodeLessonForShare(lesson)}`;
+    const url = studentImportUrl(window.location.origin, encodeLessonForShare(lesson));
     try {
       await navigator.clipboard.writeText(url);
       toast.success("Student link copied. Share it on your LMS or project a QR code.");
@@ -140,12 +141,12 @@ function LessonView({ lesson }: { lesson: Lesson }) {
           <Button variant="outline" onClick={shareLink}>
             <Link2 /> Copy student link
           </Button>
-          <Button render={<Link href={`/play/${lesson.id}`} />} variant="outline"><Gamepad2 /> Open arcade</Button>
+          <Button render={<Link href={playLessonPath(lesson.id)} />} variant="outline"><Gamepad2 /> Open arcade</Button>
           <Button variant="outline" onClick={() => window.print()}>
             <Printer /> Print
           </Button>
           {lesson.createdAt !== 0 && (
-            <Button render={<Link href={`/teacher/${lesson.id}/edit`} />}><Pencil /> Edit</Button>
+            <Button render={<Link href={teacherEditPath(lesson.id)} />}><Pencil /> Edit</Button>
           )}
         </div>
       </header>

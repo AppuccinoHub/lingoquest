@@ -2,10 +2,10 @@
   "name": "lingoquest",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://appuccinohub.github.io/lingoquest/",
   "scripts": {
     "dev": "next dev --port 4871 --hostname 0.0.0.0",
-    "build": "next build",
-    "start": "next start",
+    "build": "GITHUB_PAGES=1 next build",
     "lint": "eslint"
   },
   "dependencies": {

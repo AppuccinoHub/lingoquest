@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { teacherLessonPath } from "@/lib/paths";
 import { Plus, RotateCcw, Save, Wand2, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -106,7 +107,7 @@ export function LessonForm({ initial }: Props) {
     };
     saveLesson(lesson);
     setFlash(initial ? "Lesson updated. Materials regenerated." : `Generated ${LEVEL_COUNTS[level]} materials for ${lesson.title}.`);
-    router.push(`/teacher/${lesson.id}`);
+    router.push(teacherLessonPath(lesson.id));
   }
 
   return (

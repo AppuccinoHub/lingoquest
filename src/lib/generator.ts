@@ -1,4 +1,5 @@
 import { ACTFL_LEVELS, CAN_DO, getLanguage, getLevel, type ActflLevelId, type Mode, type Skill } from "./actfl";
+import { playGamePath } from "./paths";
 import type { Lesson, Material, MaterialCategory, VocabItem } from "./types";
 
 interface Ctx {
@@ -1115,7 +1116,7 @@ const T: Template[] = [
     minutes: 10,
     groupSize: "individual",
     lowAnxiety: true,
-    arcadeHref: (c) => `/play/${c.lesson.id}/speak`,
+    arcadeHref: (c) => playGamePath(c.lesson.id, "speak"),
     build: (c) => ({
       description: `Students speak the lesson's words and sentences to their own device. Speech recognition scores them privately and awards XP. Nobody else hears a thing.`,
       steps: [
@@ -1136,7 +1137,7 @@ const T: Template[] = [
     skills: ["reading"],
     minutes: 5,
     groupSize: "individual",
-    arcadeHref: (c) => `/play/${c.lesson.id}/blitz`,
+    arcadeHref: (c) => playGamePath(c.lesson.id, "blitz"),
     build: (c) => ({
       description: `A 60-second multiple-choice sprint over the ${c.terms.length || "lesson"} vocabulary words with combo multipliers.`,
       steps: [
@@ -1156,7 +1157,7 @@ const T: Template[] = [
     skills: ["reading", "writing"],
     minutes: 5,
     groupSize: "individual",
-    arcadeHref: (c) => `/play/${c.lesson.id}/scramble`,
+    arcadeHref: (c) => playGamePath(c.lesson.id, "scramble"),
     build: (c) => ({
       description: `Students rebuild the lesson's model sentences from shuffled chunks, then say them aloud for bonus XP.`,
       steps: [

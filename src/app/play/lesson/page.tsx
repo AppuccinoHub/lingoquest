@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { playGamePath } from "@/lib/paths";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,8 +18,8 @@ import type { Lesson, StudentProgress } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export default function LessonArcadePage() {
-  const params = useParams<{ id: string }>();
-  const [lesson] = useStored(() => findLesson(params.id) ?? null, params.id);
+  const id = useSearchParams().get("id") ?? "";
+  const [lesson] = useStored(() => findLesson(id) ?? null, id);
   const [progress, refresh] = useProgress();
 
   if (lesson === undefined || progress === undefined) {
@@ -82,7 +83,7 @@ function Hub({ lesson, progress, refresh }: { lesson: Lesson; progress: StudentP
           const r = results[g.id];
           const Icon = g.icon;
           return (
-            <Link key={g.id} href={`/play/${lesson.id}/${g.id}`} className="group">
+            <Link key={g.id} href={playGamePath(lesson.id, g.id)} className="group">
               <Card className="h-full overflow-hidden transition-all group-hover:-translate-y-0.5 group-hover:shadow-lg">
                 <div className={cn("flex h-28 items-center justify-center bg-gradient-to-br text-white", g.color)}>
                   <Icon className="size-12 drop-shadow" />

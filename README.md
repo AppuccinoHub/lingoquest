@@ -2,6 +2,8 @@
 
 An ACTFL-aligned companion for world-language teachers and their students.
 
+**Live site:** https://appuccinohub.github.io/lingoquest/
+
 - **Teacher studio** — enter one lesson (language, ACTFL proficiency target, theme, vocabulary, model sentences, structures, culture note) and get **50+ supplemental materials** generated instantly: warm-ups, interpretive tasks, interpersonal activities, presentational tasks, classroom games, formative assessments, an IPA blueprint, a speaking rubric, 5 Cs culture tasks, and homework. Every material is filtered to the proficiency level, pre-filled with your vocabulary, tagged with its mode of communication, and linked to an NCSSFL-ACTFL Can-Do statement.
 - **Student arcade** — a gamified, private way to practise speaking. Students talk to their own device, not the class. Speech recognition scores them, every attempt earns XP, and ranks are named after the ACTFL sublevels.
 
@@ -28,7 +30,7 @@ XP, streaks, badges, best scores, and Can-Do self-checks are stored in the brows
 
 ## Sharing lessons with students
 
-Lessons live on the teacher's device. "Copy student link" encodes the whole lesson into a URL (`/play/import#…`); opening it on any device saves the lesson locally and launches the arcade.
+Lessons live on the teacher's device. "Copy student link" encodes the whole lesson into a URL (`/play/import/#…`); opening it on any device saves the lesson locally and launches the arcade. On GitHub Pages that link is rooted at `/lingoquest`.
 
 ## Running locally
 
@@ -43,9 +45,10 @@ Other scripts:
 
 ```bash
 npm run lint   # ESLint
-npm run build  # production build
-npm start      # serve the production build
+npm run build  # static export to out/ (GitHub Pages project site)
 ```
+
+`npm run build` sets `basePath` to `/lingoquest` and writes a static site. `npm run dev` does not, so local links stay at the server root.
 
 ## Stack
 

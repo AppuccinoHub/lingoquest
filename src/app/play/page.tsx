@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProgressPanel } from "@/components/arcade/progress-panel";
 import { getLanguage, getLevel } from "@/lib/actfl";
+import { playLessonPath } from "@/lib/paths";
 import { allLessonsWithDemo, useProgress, useStored } from "@/lib/storage";
 
 export default function ArcadeHome() {
@@ -40,7 +41,7 @@ export default function ArcadeHome() {
                       <Badge variant="outline">{level.label}</Badge>
                     </div>
                     <CardTitle className="mt-2 text-lg leading-snug">
-                      <Link href={`/play/${lesson.id}`} className="after:absolute after:inset-0">
+                      <Link href={playLessonPath(lesson.id)} className="after:absolute after:inset-0">
                         {lesson.title}
                       </Link>
                     </CardTitle>
@@ -80,7 +81,7 @@ export default function ArcadeHome() {
               <p>Vocab Blitz: 5 XP per correct answer, multiplied by your combo.</p>
               <p>Sentence Scramble: 15 XP per sentence, plus 10 for reading it aloud.</p>
               <p>Ranks follow the ACTFL sublevels: Word Collector → Phrase Finder → Sentence Starter → Conversation Rookie…</p>
-              <Button render={<Link href="/play/demo-la-comida" />} variant="outline" size="sm" className="mt-2">Try the demo lesson</Button>
+              <Button render={<Link href={playLessonPath("demo-la-comida")} />} variant="outline" size="sm" className="mt-2">Try the demo lesson</Button>
             </CardContent>
           </Card>
         </aside>
