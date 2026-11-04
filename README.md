@@ -4,6 +4,8 @@ An ACTFL-aligned companion for world-language teachers and their students.
 
 **Live site:** https://appuccinohub.github.io/lingoquest/
 
+GitHub Pages has to be turned on once: repository **Settings → Pages → Build and deployment → Source → GitHub Actions**. The workflow on `main` (`.github/workflows/pages.yml`) publishes the static export. Until that source is saved, the URL returns GitHub's 404.
+
 - **Teacher studio** — enter one lesson (language, ACTFL proficiency target, theme, vocabulary, model sentences, structures, culture note) and get **50+ supplemental materials** generated instantly: warm-ups, interpretive tasks, interpersonal activities, presentational tasks, classroom games, formative assessments, an IPA blueprint, a speaking rubric, 5 Cs culture tasks, and homework. Every material is filtered to the proficiency level, pre-filled with your vocabulary, tagged with its mode of communication, and linked to an NCSSFL-ACTFL Can-Do statement.
 - **Student arcade** — a gamified, private way to practise speaking. Students talk to their own device, not the class. Speech recognition scores them, every attempt earns XP, and ranks are named after the ACTFL sublevels.
 
