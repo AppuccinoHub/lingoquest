@@ -1,0 +1,21 @@
+name = "lingoquest-generate"
+main = "src/index.js"
+compatibility_date = "2026-11-07"
+
+[ai]
+binding = "AI"
+
+[vars]
+AI_MODEL = "@cf/mistralai/mistral-small-3.1-24b-instruct"
+DAILY_REQUEST_CAP = "30"
+RATE_LIMIT_PER_WINDOW = "10"
+RATE_LIMIT_WINDOW_SECONDS = "3600"
+MAX_TOPIC_LENGTH = "200"
+MAX_BODY_BYTES = "2000"
+MAX_OUTPUT_TOKENS = "3500"
+
+# Create this with: npx wrangler kv namespace create LIMITS
+# Then replace the id below. Do not put a passcode in this file.
+[[kv_namespaces]]
+binding = "LIMITS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

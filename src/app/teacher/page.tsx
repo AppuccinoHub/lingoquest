@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { getLanguage, getLevel } from "@/lib/actfl";
 import { DEMO_LESSON } from "@/lib/demo-lesson";
 import { LEVEL_COUNTS } from "@/lib/generator";
+import { GeneratePanel } from "@/components/generate-panel";
 import { teacherLessonPath } from "@/lib/paths";
 import { deleteLesson, useLessons } from "@/lib/storage";
 import type { Lesson } from "@/lib/types";
@@ -32,6 +33,8 @@ export default function TeacherHome() {
         </div>
         <Button render={<Link href="/teacher/new" />} className="h-10"><Plus /> New lesson</Button>
       </div>
+
+      <GeneratePanel />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {lessons === undefined &&

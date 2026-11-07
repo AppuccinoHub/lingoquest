@@ -1,0 +1,43 @@
+{
+  "title": "Al bar: ordering a drink and a snack",
+  "languageId": "it",
+  "level": "novice-mid",
+  "theme": "Café drinks and snacks in Italy",
+  "essentialQuestion": "Come posso ordinare qualcosa al bar?",
+  "canDo": [
+    "I can name common café drinks and snacks when I see them on a menu.",
+    "I can order one item with a memorized polite phrase.",
+    "I can ask how much something costs.",
+    "I can thank the person who helped me."
+  ],
+  "vocabulary": [
+    { "term": "un caffè", "translation": "an espresso coffee" },
+    { "term": "un cappuccino", "translation": "a cappuccino" },
+    { "term": "un tè", "translation": "a tea" },
+    { "term": "un cornetto", "translation": "a croissant" },
+    { "term": "un panino", "translation": "a sandwich" },
+    { "term": "un succo di frutta", "translation": "a fruit juice" },
+    { "term": "un'acqua naturale", "translation": "a still water" },
+    { "term": "un'acqua frizzante", "translation": "a sparkling water" },
+    { "term": "il menù", "translation": "the menu" },
+    { "term": "il conto", "translation": "the bill" }
+  ],
+  "sentences": [
+    "Vorrei un cornetto, per favore.",
+    "Per me un tè.",
+    "Quanto costa il panino?",
+    "Il conto, per favore.",
+    "Vorrei un'acqua frizzante, per favore.",
+    "Quant'è il caffè?"
+  ],
+  "structures": [
+    "Vorrei… (I would like…) — a fixed polite chunk, not a conjugation pattern",
+    "Per favore (please)",
+    "Quanto costa? (How much does it cost?)",
+    "Quant'è? (How much is it?)",
+    "Basta così (That's all)",
+    "Grazie (Thank you)",
+    "un / un' + noun (a / an)"
+  ],
+  "cultureNote": "In Italy a bar is usually a café. How people order and pay is not the same everywhere: some places ask you to pay at the cassa first, and others bring il conto after you finish. It helps to watch what others do, or to ask."
+}
