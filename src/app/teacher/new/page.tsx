@@ -13,7 +13,7 @@ export default function NewLessonPage() {
       <div className="mb-6 mt-3">
         <h1 className="text-3xl font-bold tracking-tight">New lesson</h1>
         <p className="mt-1 text-muted-foreground">
-          Enter what you are already teaching. LingoQuest matches it to the ACTFL level and builds the supplemental materials.
+          Already have a lesson? Type it in. Not sure what to teach? Pick a unit and LingoQuest fills in the rest.
         </p>
       </div>
       <LessonForm />

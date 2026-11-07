@@ -11,10 +11,11 @@ import { Label } from "@/components/ui/label";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { ACTFL_LEVELS, LANGUAGES, getLevel, suggestCanDo, type ActflLevelId } from "@/lib/actfl";
+import { ACTFL_LEVELS, LANGUAGES, getLanguage, getLevel, suggestCanDo, type ActflLevelId } from "@/lib/actfl";
 import { LEVEL_COUNTS } from "@/lib/generator";
 import { newId, saveLesson, setFlash } from "@/lib/storage";
 import type { Lesson, VocabItem } from "@/lib/types";
+import { UNIT_BY_ID, unitsForLanguage } from "@/lib/unit-ideas";
 
 interface Props {
   initial?: Lesson;
@@ -61,16 +62,41 @@ export function LessonForm({ initial }: Props) {
   const [sentencesText, setSentencesText] = useState(initial?.sentences.join("\n") ?? "");
   const [structuresText, setStructuresText] = useState(initial?.structures.join("\n") ?? "");
   const [cultureNote, setCultureNote] = useState(initial?.cultureNote ?? "");
+  const [unitId, setUnitId] = useState("");
   const [saving, setSaving] = useState(false);
 
   const vocab = useMemo(() => parseVocab(vocabText), [vocabText]);
   const sentences = useMemo(() => linesToArray(sentencesText), [sentencesText]);
   const levelInfo = getLevel(level);
+  const unitChoices = useMemo(() => unitsForLanguage(languageId), [languageId]);
+  const selectedUnit = unitId ? UNIT_BY_ID[unitId] : undefined;
 
   const errors: string[] = [];
   if (!title.trim()) errors.push("Give the lesson a title.");
   if (vocab.length < 3) errors.push("Add at least 3 vocabulary items.");
   if (sentences.length < 1) errors.push("Add at least one model sentence so the games have something to say.");
+
+  function handleLanguageChange(next: string) {
+    setLanguageId(next);
+    if (unitId && UNIT_BY_ID[unitId]?.languageId !== next) setUnitId("");
+  }
+
+  function applyUnit(nextId: string) {
+    setUnitId(nextId);
+    const unit = UNIT_BY_ID[nextId];
+    if (!unit) return;
+    setTitle(unit.title);
+    setLanguageId(unit.languageId);
+    setLevel(unit.level);
+    setTheme(unit.theme);
+    setEssentialQuestion(unit.essentialQuestion);
+    setCanDo(unit.canDo);
+    setVocabText(vocabToText(unit.vocabulary));
+    setSentencesText(unit.sentences.join("\n"));
+    setStructuresText(unit.structures.join("\n"));
+    setCultureNote(unit.cultureNote);
+    toast.success(`Filled in “${unit.menuLabel}”. Change anything, then generate.`);
+  }
 
   function handleLevelChange(next: ActflLevelId) {
     setLevel(next);
@@ -112,6 +138,30 @@ export function LessonForm({ initial }: Props) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <div className="space-y-6">
+        <Card className="border-primary/25 bg-accent/40">
+          <CardHeader>
+            <CardTitle>Not sure what to teach?</CardTitle>
+            <CardDescription>
+              Pick a unit for {getLanguage(languageId).name}. LingoQuest fills the title, vocabulary, sentences, and culture note. You can edit every field before you generate.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <Label htmlFor="unit-idea">Unit ideas</Label>
+            <NativeSelect id="unit-idea" value={unitId} onChange={(e) => applyUnit(e.target.value)} className="w-full">
+              <NativeSelectOption value="">Choose a unit…</NativeSelectOption>
+              {unitChoices.map((unit) => (
+                <NativeSelectOption key={unit.id} value={unit.id}>
+                  {unit.menuLabel}
+                </NativeSelectOption>
+              ))}
+            </NativeSelect>
+            {selectedUnit && (
+              <p className="text-sm text-muted-foreground">
+                Filled in: {selectedUnit.theme}. {getLevel(selectedUnit.level).label}.
+              </p>
+            )}
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <CardTitle>Lesson basics</CardTitle>
@@ -124,7 +174,7 @@ export function LessonForm({ initial }: Props) {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="language">Target language</Label>
-              <NativeSelect id="language" value={languageId} onChange={(e) => setLanguageId(e.target.value)} className="w-full">
+              <NativeSelect id="language" value={languageId} onChange={(e) => handleLanguageChange(e.target.value)} className="w-full">
                 {LANGUAGES.map((l) => (
                   <NativeSelectOption key={l.id} value={l.id}>
                     {l.flag} {l.name}
